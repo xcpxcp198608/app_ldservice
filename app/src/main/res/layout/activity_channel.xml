@@ -8,19 +8,6 @@
     android:clipChildren="false"
     tools:context="com.wiatec.bplay.view.activity.MainActivity">
 
-    <ImageView
-        android:id="@+id/ivChannel"
-        android:scaleType="centerCrop"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <ImageView
-        android:background="@color/colorTranslucentB"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-
     <LinearLayout
         android:padding="30dp"
         android:orientation="vertical"
@@ -109,7 +96,7 @@
 
         </LinearLayout>
 
-        <com.wiatec.ldservice.widget.ItemRecyclerView
+        <android.support.v7.widget.RecyclerView
             android:clipChildren="false"
             android:id="@+id/rcvChannel"
             android:layout_width="match_parent"

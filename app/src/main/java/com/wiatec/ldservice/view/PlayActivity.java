@@ -379,7 +379,7 @@ public class PlayActivity extends AppCompatActivity implements SurfaceHolder.Cal
                     binding.llController.setVisibility(View.GONE);
                     binding.rcvChannel.setVisibility(View.GONE);
                 }else{
-                    if(mediaPlayer.isPlaying()){
+                    if(mediaPlayer != null && mediaPlayer.isPlaying()){
                         binding.ibtStartStop.setBackgroundResource(R.drawable.bg_button_pause);
                     }else{
                         binding.ibtStartStop.setBackgroundResource(R.drawable.bg_button_play);

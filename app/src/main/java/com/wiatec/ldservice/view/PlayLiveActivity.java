@@ -260,50 +260,50 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
     }
 
     private void initWebView(){
-        binding.webView.setWebViewClient(new MyWebViewClient());
-        binding.webView.setBackgroundColor(0);
-        WebSettings webSettings = binding.webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setUseWideViewPort(true);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setSupportZoom(true);
-        webSettings.setBuiltInZoomControls(true);
-        webSettings.setDisplayZoomControls(false);
-        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webSettings.setAllowFileAccess(true);
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webSettings.setLoadsImagesAutomatically(true);
-        webSettings.setDefaultTextEncodingName("utf-8");
+//        binding.webView.setWebViewClient(new MyWebViewClient());
+//        binding.webView.setBackgroundColor(0);
+//        WebSettings webSettings = binding.webView.getSettings();
+//        webSettings.setJavaScriptEnabled(true);
+//        webSettings.setUseWideViewPort(true);
+//        webSettings.setLoadWithOverviewMode(true);
+//        webSettings.setSupportZoom(true);
+//        webSettings.setBuiltInZoomControls(true);
+//        webSettings.setDisplayZoomControls(false);
+//        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+//        webSettings.setAllowFileAccess(true);
+//        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+//        webSettings.setLoadsImagesAutomatically(true);
+//        webSettings.setDefaultTextEncodingName("utf-8");
     }
 
     private void loadWebView(){
-        isJSLoaded = false;
-        binding.webView.loadUrl(Constant.url.blive_danmu_url);
-        binding.webView.setWebChromeClient(new WebChromeClient(){
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                if(newProgress >= 100){
-                    if(!isJSLoaded) {
-                        binding.webView.loadUrl("javascript:showDanMu('" + channel + "')");
-                        isJSLoaded = true;
-                    }
-                }
-            }
-        });
+//        isJSLoaded = false;
+//        binding.webView.loadUrl(Constant.url.blive_danmu_url);
+//        binding.webView.setWebChromeClient(new WebChromeClient(){
+//            @Override
+//            public void onProgressChanged(WebView view, int newProgress) {
+//                super.onProgressChanged(view, newProgress);
+//                if(newProgress >= 100){
+//                    if(!isJSLoaded) {
+//                        binding.webView.loadUrl("javascript:showDanMu('" + channel + "')");
+//                        isJSLoaded = true;
+//                    }
+//                }
+//            }
+//        });
     }
 
     private void unloadWebView(){
-        binding.webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-        isJSLoaded = false;
+//        binding.webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+//        isJSLoaded = false;
     }
 
     private void releaseWebView(){
-        binding.webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-        isJSLoaded = false;
-        binding.webView.clearHistory();
-        ((ViewGroup) binding.webView.getParent()).removeView(binding.webView);
-        binding.webView.destroy();
+//        binding.webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+//        isJSLoaded = false;
+//        binding.webView.clearHistory();
+//        ((ViewGroup) binding.webView.getParent()).removeView(binding.webView);
+//        binding.webView.destroy();
     }
 
 
@@ -341,12 +341,12 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(buttonView.getId() == R.id.switchDanMu){
             if(isChecked){
-                binding.webView.setVisibility(View.VISIBLE);
+//                binding.webView.setVisibility(View.VISIBLE);
                 binding.etMessage.setVisibility(View.VISIBLE);
                 binding.btSend.setVisibility(View.VISIBLE);
                 loadWebView();
             }else{
-                binding.webView.setVisibility(View.GONE);
+//                binding.webView.setVisibility(View.GONE);
                 binding.etMessage.setVisibility(View.GONE);
                 binding.btSend.setVisibility(View.GONE);
                 unloadWebView();

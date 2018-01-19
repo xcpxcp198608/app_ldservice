@@ -41,7 +41,7 @@ public final class Constant {
     }
 
     public static final class key{
-        public static final String channel_type = "channelType";
+        public static final String channel_type = "CHANNEL_TYPE";
         public static final String key_search = "KEY_SEARCH";
         public static final String type_favorite = "FAVORITE";
         public static final String type_history = "HISTORY";

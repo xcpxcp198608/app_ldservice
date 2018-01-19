@@ -23,7 +23,7 @@
         android:singleLine="true"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
-        android:textColor="@drawable/text_play_channel"
+        android:textColor="@drawable/bg_text_resource_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

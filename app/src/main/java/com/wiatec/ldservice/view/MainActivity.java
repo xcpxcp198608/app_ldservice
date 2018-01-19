@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.px.common.animator.Zoom;
 import com.px.common.image.ImageMaster;
 import com.px.common.utils.AppUtil;
 import com.wiatec.ldservice.R;

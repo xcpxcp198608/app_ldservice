@@ -17,17 +17,17 @@
     <LinearLayout
         android:id="@+id/ll_error"
         android:orientation="vertical"
-        android:visibility="gone"
         android:gravity="center"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_error"
             android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="23sp"
-            tools:text="23423423423"
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp"
+            android:text="@string/load_fail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -35,10 +35,12 @@
             android:id="@+id/bt_reload"
             android:text="reload"
             android:textSize="22sp"
+            android:layout_margin="10dp"
             android:textColor="@android:color/white"
+            android:background="@drawable/bg_button_retry"
             android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="150dp"
+            android:layout_height="60dp" />
     </LinearLayout>
 
     <ProgressBar

@@ -53,9 +53,9 @@ public class ChannelTypeActivity2 extends BaseActivity<ChannelType2Presenter> im
             @Override
             public void onFocus(View view, int position, boolean hasFocus) {
                 if(hasFocus){
-                    Zoom.zoomIn10to11(view);
+                    view.setSelected(true);
                 }else{
-                    Zoom.zoomIn11to10(view);
+                    view.setSelected(false);
                 }
             }
         });

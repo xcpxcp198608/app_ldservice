@@ -14,10 +14,10 @@ import java.util.List;
 
 public interface IChannel extends IAdImage {
 
-    void loadChannel(boolean execute, List<ChannelInfo> channelInfoList);
-    void loadLiveChannel(boolean execute, List<LiveChannelInfo> liveChannelInfoList);
-    void loadFavorite(boolean execute, List<ChannelInfo> channelInfoList);
-    void loadHistory(boolean execute, List<ChannelInfo> channelInfoList);
-    void loadSearch(boolean execute, List<ChannelInfo> channelInfoList);
+    void onLoadChannel(boolean execute, List<ChannelInfo> channelInfoList);
+    void onLoadLiveChannel(boolean execute, List<LiveChannelInfo> liveChannelInfoList);
+    void onLoadFavorite(boolean execute, List<ChannelInfo> channelInfoList);
+    void onLoadHistory(boolean execute, List<ChannelInfo> channelInfoList);
+    void onLoadSearch(boolean execute, List<ChannelInfo> channelInfoList);
     void onPayVerify(boolean execute, PayResultInfo payResultInfo);
 }

@@ -1,7 +1,6 @@
 package com.wiatec.ldservice.presenter;
 
 
-import com.px.common.http.pojo.ResultInfo;
 import com.wiatec.ldservice.model.ChannelProvider;
 import com.wiatec.ldservice.model.ResultListLoader;
 import com.wiatec.ldservice.model.ResultListWithParamLoader;
@@ -36,7 +35,7 @@ public class ChannelPresenter extends BasePresenter {
             channelProvider.load(type, new ResultListWithParamLoader.OnLoadListener<ChannelInfo>() {
                 @Override
                 public void onSuccess(boolean execute, List<ChannelInfo> list) {
-                    channel.loadChannel(execute, list);
+                    channel.onLoadChannel(execute, list);
                 }
 
                 @Override
@@ -54,8 +53,7 @@ public class ChannelPresenter extends BasePresenter {
 
                 @Override
                 public void onSuccess(boolean execute, List<LiveChannelInfo> list) {
-
-                    channel.loadLiveChannel(execute, list);
+                    channel.onLoadLiveChannel(execute, list);
                 }
 
                 @Override
@@ -72,7 +70,7 @@ public class ChannelPresenter extends BasePresenter {
 
                 @Override
                 public void onSuccess(boolean execute, List<ChannelInfo> list) {
-                    channel.loadFavorite(execute, list);
+                    channel.onLoadFavorite(execute, list);
                 }
 
                 @Override
@@ -90,7 +88,7 @@ public class ChannelPresenter extends BasePresenter {
 
                 @Override
                 public void onSuccess(boolean execute, List<ChannelInfo> list) {
-                    channel.loadHistory(execute, list);
+                    channel.onLoadHistory(execute, list);
                 }
 
                 @Override
@@ -108,7 +106,7 @@ public class ChannelPresenter extends BasePresenter {
 
                 @Override
                 public void onSuccess(boolean execute, List<ChannelInfo> list) {
-                    channel.loadSearch(execute, list);
+                    channel.onLoadSearch(execute, list);
                 }
 
                 @Override

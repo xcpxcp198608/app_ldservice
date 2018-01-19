@@ -63,6 +63,7 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
         binding = DataBindingUtil.setContentView(this, R.layout.activity_channel);
         PayPalConfig.startPayPalService(this);
         type = getIntent().getStringExtra(Constant.key.channel_type);
+        Logger.d(type);
         if(type.equals("FAVORITE") || type.equals("SPORTS") || type.equals("SPORTS EVENT") ||
                 type.equals("LATINO") || type.equals("USA") || type.equals("USA LOCAL NEWS") ||
                 type.equals("CHINA") || type.equals("TAIWAN") || type.equals("KOREA") ||
@@ -87,6 +88,11 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
         binding.ibtHistory.setOnClickListener(this);
         binding.ibtCleanHistory.setOnClickListener(this);
         binding.rcvChannel.requestFocus();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -167,22 +173,22 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
     }
 
     @Override
-    public void loadChannel(boolean execute, final List<ChannelInfo> channelInfoList) {
+    public void onLoadChannel(boolean execute, final List<ChannelInfo> channelInfoList) {
         load(execute, channelInfoList);
     }
 
     @Override
-    public void loadFavorite(boolean execute, List<ChannelInfo> channelInfoList) {
+    public void onLoadFavorite(boolean execute, List<ChannelInfo> channelInfoList) {
         load(execute, channelInfoList);
     }
 
     @Override
-    public void loadHistory(boolean execute, List<ChannelInfo> channelInfoList) {
+    public void onLoadHistory(boolean execute, List<ChannelInfo> channelInfoList) {
         load(execute, channelInfoList);
     }
 
     @Override
-    public void loadSearch(boolean execute, List<ChannelInfo> channelInfoList) {
+    public void onLoadSearch(boolean execute, List<ChannelInfo> channelInfoList) {
         load(execute, channelInfoList);
     }
 
@@ -227,10 +233,8 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
             public void onFocus(View view, int position, boolean hasFocus) {
                 if(hasFocus){
                     binding.tvPosition.setText((position + 1) + "");
-                    Zoom.zoomIn10to11(view);
                     view.setSelected(true);
                 }else{
-                    Zoom.zoomIn11to10(view);
                     view.setSelected(false);
                 }
             }
@@ -238,7 +242,7 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
     }
 
     @Override
-    public void loadLiveChannel(boolean execute, final List<LiveChannelInfo> liveChannelInfoList) {
+    public void onLoadLiveChannel(boolean execute, final List<LiveChannelInfo> liveChannelInfoList) {
         if(!execute){
             binding.pbLoading.setVisibility(View.GONE);
             if(Constant.key.type_favorite.equals(type)){
@@ -274,10 +278,8 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
             public void onFocus(View view, int position, boolean hasFocus) {
                 if(hasFocus){
                     binding.tvPosition.setText((position + 1) + "");
-                    Zoom.zoomIn10to11(view);
                     view.setSelected(true);
                 }else{
-                    Zoom.zoomIn11to10(view);
                     view.setSelected(false);
                 }
             }

@@ -23,6 +23,7 @@ public class ResourceAppProvider implements ResultListWithParamLoader<ResourceAp
                     @Override
                     public void onFailure(String e) {
                         Logger.e(e);
+                        onLoadListener.onSuccess(false, null);
                     }
 
                     @Override

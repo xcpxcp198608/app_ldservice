@@ -26,6 +26,7 @@ public class ResourcesActivity extends BaseActivity<ResourcesPresenter> implemen
     public static final int TYPE_RESOURCES = 0;
     public static final int TYPE_VIP = 1;
     private ActivityResourcesBinding binding;
+    private int resourcesAppType;
 
     @Override
     protected ResourcesPresenter createPresenter() {
@@ -36,7 +37,7 @@ public class ResourcesActivity extends BaseActivity<ResourcesPresenter> implemen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_resources);
-        int resourcesAppType = getIntent().getIntExtra(INTENT_KEY, TYPE_RESOURCES);
+        resourcesAppType = getIntent().getIntExtra(INTENT_KEY, TYPE_RESOURCES);
         presenter.loadResourcesApp(resourcesAppType);
     }
 
@@ -88,6 +89,13 @@ public class ResourcesActivity extends BaseActivity<ResourcesPresenter> implemen
 
     private void showLoadError(){
         binding.llError.setVisibility(View.VISIBLE);
+        binding.btReload.requestFocus();
+        binding.btReload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.loadResourcesApp(resourcesAppType);
+            }
+        });
     }
 
 }

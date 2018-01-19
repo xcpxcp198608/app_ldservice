@@ -7,6 +7,7 @@
             type="com.wiatec.ldservice.view.MainActivity.OnEventListener"/>
     </data>
 <FrameLayout
+    android:clipChildren="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,6 +21,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_width="match_parent"
         android:padding="40dp"
+        android:clipChildren="false"
         android:background="@color/colorTranslucentA"
         android:layout_height="280dp">
 

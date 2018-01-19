@@ -6,7 +6,7 @@ import com.wiatec.ldservice.model.ResultListLoader;
 import com.wiatec.ldservice.model.ResultListWithParamLoader;
 import com.wiatec.ldservice.pojo.ChannelTypeInfo;
 import com.wiatec.ldservice.pojo.LDFamInfo;
-import com.wiatec.ldservice.provider.BVisionProvider;
+import com.wiatec.ldservice.model.BVisionProvider;
 import com.wiatec.ldservice.view.IBVision;
 
 import java.util.List;
