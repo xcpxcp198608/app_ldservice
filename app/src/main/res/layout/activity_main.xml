@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="onEvent"
+            type="com.wiatec.ldservice.view.MainActivity.OnEventListener"/>
+    </data>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_ad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_width="match_parent"
+        android:padding="40dp"
+        android:background="@color/colorTranslucentA"
+        android:layout_height="280dp">
+
+        <ImageButton
+            android:padding="3dp"
+            android:id="@+id/ibtNet"
+            android:background="@drawable/bg_button_net"
+            android:onClick="@{(view) -> onEvent.onClick(view)}"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <ImageButton
+            android:padding="3dp"
+            android:id="@+id/ibtBvision"
+            android:background="@drawable/bg_button_bvision"
+            android:onClick="@{(view) -> onEvent.onClick(view)}"
+            android:layout_marginStart="40dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:padding="3dp"
+            android:id="@+id/ibtVip"
+            android:background="@drawable/bg_button_bvip"
+            android:onClick="@{(view) -> onEvent.onClick(view)}"
+            android:layout_marginStart="40dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp" />
+
+    </LinearLayout>
+</FrameLayout>
+</layout>

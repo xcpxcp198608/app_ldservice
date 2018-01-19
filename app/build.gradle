@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.wiatec.ldservice"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 101
+        versionName "v1.0.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("/KeyStore/platform_s905.keystore")
+            storePassword KEYSTORE_PASSWORD
+            keyAlias "platform"
+            keyPassword KEY_PASSWORD
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def fileName = ""
+            if (variant.buildType.name == 'release') {
+                fileName = applicationId + "_" + variant.versionName + "_" + variant.versionCode + "_${releaseTime()}.apk"
+            } else if (variant.buildType.name == 'debug') {
+                fileName = applicationId + "_" + variant.versionName + "_" + variant.versionCode + "_debug.apk"
+            }
+            outputFileName = new File(fileName)
+        }
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.afollestad.material-dialogs:commons:0.9.5.0'
+    implementation project(':module_common')
+    compile 'com.alibaba:arouter-api:1.1.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.2'
+    compile 'com.paypal.sdk:paypal-android-sdk:2.15.3'
+}
