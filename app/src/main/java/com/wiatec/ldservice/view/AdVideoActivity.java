@@ -54,16 +54,16 @@ public class AdVideoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String level = UserContentResolver.get("userLevel");
-        try {
-            userLevel = Integer.parseInt(level);
-        }catch (Exception e){
-            userLevel = 1;
-        }
-        if(userLevel >= 4){
-            launchSpecialPackage();
-            return;
-        }
+//        String level = UserContentResolver.get("userLevel");
+//        try {
+//            userLevel = Integer.parseInt(level);
+//        }catch (Exception e){
+//            userLevel = 1;
+//        }
+//        if(userLevel >= 4){
+//            launchSpecialPackage();
+//            return;
+//        }
         playVideo();
     }
 
@@ -105,16 +105,14 @@ public class AdVideoActivity extends AppCompatActivity {
                         public void accept(Long aLong) {
                             int i = (int) (time -1 -aLong);
                             binding.tvDelayTime.setText(i +" s");
-                            if(userLevel >= 2){
-                                int j = (int) (SKIP_TIME -aLong);
-                                if(j <0){
-                                    j = 0;
-                                }
-                                binding.tvTime.setText(" "+j + "s");
-                                if(time - i > SKIP_TIME){
-                                    binding.btSkip.setVisibility(View.VISIBLE);
-                                    binding.btSkip.requestFocus();
-                                }
+                            int j = (int) (SKIP_TIME -aLong);
+                            if(j <0){
+                                j = 0;
+                            }
+                            binding.tvTime.setText(" "+j + "s");
+                            if(time - i > SKIP_TIME){
+                                binding.btSkip.setVisibility(View.VISIBLE);
+                                binding.btSkip.requestFocus();
                             }
                         }
                     });

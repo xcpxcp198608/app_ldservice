@@ -72,7 +72,7 @@ public class SplashActivity extends AppCompatActivity {
                                         showUpgradeDialog(upgradeInfo);
                                     }
                                 } else {
-                                    FileUtil.delete(Application.RECOMMENDED_APK_PATH, CommonApplication.context.getPackageName() + ".apk");
+                                    FileUtil.delete(Application.APK_PATH, CommonApplication.context.getPackageName() + ".apk");
                                     jumpToMain();
                                 }
                             } catch (Exception e) {
@@ -111,7 +111,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void showUpgradeProcessDialog(UpgradeInfo upgradeInfo){
-        FileUtil.delete(Application.RECOMMENDED_APK_PATH, CommonApplication.context.getPackageName()+".apk");
+        FileUtil.delete(Application.APK_PATH, CommonApplication.context.getPackageName()+".apk");
         final ProgressDialog progressDialog = new ProgressDialog(CommonApplication.context);
         progressDialog.setTitle(CommonApplication.context.getString(R.string.download_title));
         progressDialog.setMessage(CommonApplication.context.getString(R.string.download_message));
@@ -126,7 +126,7 @@ public class SplashActivity extends AppCompatActivity {
         progressDialog.show();
         HttpMaster.download(CommonApplication.context)
                 .url(upgradeInfo.getUrl())
-                .path(Application.RECOMMENDED_APK_PATH)
+                .path(Application.APK_PATH)
                 .name(CommonApplication.context.getPackageName()+".apk")
                 .startDownload(new DownloadListener() {
                     @Override
@@ -154,10 +154,10 @@ public class SplashActivity extends AppCompatActivity {
                         isShow = false;
                         progressDialog.setProgress(100);
                         progressDialog.dismiss();
-                        if(AppUtil.isApkCanInstall(Application.RECOMMENDED_APK_PATH, downloadInfo.getName())){
-                            AppUtil.installApk(Application.RECOMMENDED_APK_PATH, downloadInfo.getName(), "");
+                        if(AppUtil.isApkCanInstall(Application.APK_PATH, downloadInfo.getName())){
+                            AppUtil.installApk(Application.APK_PATH, downloadInfo.getName(), "");
                         }else{
-                            FileUtil.delete(Application.RECOMMENDED_APK_PATH, downloadInfo.getName());
+                            FileUtil.delete(Application.APK_PATH, downloadInfo.getName());
                             EmojiToast.show(CommonApplication.context.getString(R.string.install_error), EmojiToast.EMOJI_SAD);
                             jumpToMain();
                         }

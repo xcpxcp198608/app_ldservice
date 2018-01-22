@@ -18,7 +18,7 @@ public class Application extends CommonApplication {
 
     private static ExecutorService executorService;
     public static String AD_IMAGE_PATH;
-    public static String RECOMMENDED_APK_PATH;
+    public static String APK_PATH;
 
     private static List<ChannelInfo> channelInfoList = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class Application extends CommonApplication {
         ARouter.init(this);
         executorService = Executors.newCachedThreadPool();
         AD_IMAGE_PATH = getExternalFilesDir("ad_images").getAbsolutePath();
-        RECOMMENDED_APK_PATH = getExternalFilesDir("recommended_apk").getAbsolutePath();
+        APK_PATH = getExternalFilesDir("apk").getAbsolutePath();
     }
 
     public static ExecutorService getExecutorService() {

@@ -11,9 +11,10 @@ public final class Constant {
 
     public static final class url{
 
-        private static final String base_url = "http://ldservice.ldlegacy.com:8080/ldservice/";
+        private static final String base_url = "http://ldservice.ldlegacy.com/ldservice/";
 
         public static final String remote_apk = base_url + "remote/";
+        public static final String remove_apk = base_url + "remove/";
         public static final String resource_apk = base_url + "resource/";
         public static final String automatic_play = base_url + "play/";
         public static final String upgrade = base_url + "upgrade/";
@@ -31,8 +32,7 @@ public final class Constant {
         public static final String token = "/9B67E88314F416F2092AB8ECA6A7C8EDCCE3D6D85A816E6E6F9F919B2E6C277D";
 
 
-        public static final String ld_fam = "http://www.ldlegacy.com:8080/LDFAM/get";
-
+        public static final String ld_fam = "http://www.ldlegacy.com/LDFAM/get";
 
         public static final String blive_base = "https://blive.bvision.live:8443/blive/";
         public static final String blive_channel = blive_base + "channel/";
@@ -49,6 +49,7 @@ public final class Constant {
         public static final String type_live_channel = "CHANNEL";
         public static final String key_url = "KEY_URL";
         public static final String key_duration = "KEY_DURATION";
+        public static final String SP_USER_LEVEL = "userLevel";
     }
 
     public static final class activity{

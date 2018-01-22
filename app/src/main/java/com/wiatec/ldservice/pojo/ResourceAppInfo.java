@@ -13,6 +13,7 @@ public class ResourceAppInfo {
     private int versionCode;
     private String url;
     private String icon;
+    private int type;
 
     public int getId() {
         return id;
@@ -62,6 +63,14 @@ public class ResourceAppInfo {
         this.icon = icon;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "ResourceAppInfo{" +
@@ -71,6 +80,7 @@ public class ResourceAppInfo {
                 ", versionCode=" + versionCode +
                 ", url='" + url + '\'' +
                 ", icon='" + icon + '\'' +
+                ", type=" + type +
                 '}';
     }
 }

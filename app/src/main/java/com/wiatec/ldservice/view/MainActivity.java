@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain {
                     showBvisionActivity();
                     break;
                 case R.id.ibtVip:
-                    showResourcesActivity(ResourcesActivity.TYPE_VIP);
+                    showResourcesActivity();
                     break;
             }
         }
@@ -65,10 +65,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain {
                 .navigation();
     }
 
-    private void showResourcesActivity(int resourcesAppType){
+    private void showResourcesActivity(){
         ARouter.getInstance()
                 .build(Constant.route.resources)
-                .withInt(ResourcesActivity.INTENT_KEY, resourcesAppType)
                 .navigation();
     }
 

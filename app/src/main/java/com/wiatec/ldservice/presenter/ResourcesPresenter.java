@@ -22,8 +22,8 @@ public class ResourcesPresenter extends BasePresenter<IResources> {
         resourceApp = new ResourceAppProvider();
     }
 
-    public void loadResourcesApp(int type){
-        resourceApp.load(type+"", new ResultListWithParamLoader.OnLoadListener<ResourceAppInfo>() {
+    public void loadResourcesApp(int userLevel){
+        resourceApp.load(userLevel+"", new ResultListWithParamLoader.OnLoadListener<ResourceAppInfo>() {
             @Override
             public void onSuccess(boolean execute, List<ResourceAppInfo> list) {
                 iResources.onResourcesAppLoaded(execute, list);
