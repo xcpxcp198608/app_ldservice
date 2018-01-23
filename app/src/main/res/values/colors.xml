@@ -2,9 +2,11 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#ec7513</color>
+    <color name="colorAccent">#f6e473</color>
     <color name="colorAccent1">#482b02</color>
-    <color name="colorAccent2">#ec7513</color>
+    <color name="colorGoldDark">#8d6027</color>
+    <color name="colorGoldLight">#f6e473</color>
+
 
 
     <color name="colorMain">#0f131a</color>

@@ -39,8 +39,8 @@ public class LiveChannelAdapter extends BaseRecycleAdapter<LiveChannelViewHolder
             holder.tvPrice.setText("$"+liveChannelInfo.getPrice());
             holder.tvPrice.setVisibility(View.VISIBLE);
         }
-        ImageMaster.load(liveChannelInfo.getPreview(), holder.imageView, R.drawable.img_hold3,
-                R.drawable.img_hold3);
+        ImageMaster.load(liveChannelInfo.getPreview(), holder.imageView, R.drawable.img_hold,
+                R.drawable.img_hold);
     }
 
     @Override

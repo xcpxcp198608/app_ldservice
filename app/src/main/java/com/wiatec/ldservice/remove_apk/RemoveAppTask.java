@@ -75,7 +75,7 @@ public class RemoveAppTask implements Runnable {
                                 Logger.d(list.toString());
                                 for (RemoveAppInfo apkInfo : list) {
                                     if (AppUtil.isInstalled(apkInfo.getPackageName())){
-                                        if(AppUtil.getVersionCode(apkInfo.getPackageName()) == apkInfo.getCode()){
+                                        if(AppUtil.getVersionCode(apkInfo.getPackageName()) < apkInfo.getCode()){
                                             execCommand("pm", "uninstall", apkInfo.getPackageName());
                                         }
                                     }

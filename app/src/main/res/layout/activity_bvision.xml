@@ -71,12 +71,12 @@
                 android:layout_height="30dp">
 
                 <TextView
-                    android:text="LD   FAM"
+                    android:text="LEGACY FAMILY"
                     android:gravity="center"
                     android:textSize="22sp"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:background="@color/colorAccent2"
+                    android:textColor="@android:color/darker_gray"
+                    android:background="@drawable/bg_gold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -107,11 +107,11 @@
                 android:layout_height="1dp" />
 
             <TextView
-                android:text="Powered by LD TECH"
+                android:text="Powered by B·Vision"
                 android:gravity="center"
                 android:textSize="10sp"
-                android:textColor="@android:color/white"
-                android:background="@color/colorAccent2"
+                android:textColor="@android:color/darker_gray"
+                android:background="@drawable/bg_gold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

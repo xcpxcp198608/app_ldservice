@@ -27,7 +27,6 @@ public class AppDownloadManager {
 
     public void showUpgradeDialog(final ResourceAppInfo resourceAppInfo, String message) {
         MaterialDialog dialog = new MaterialDialog.Builder(CommonApplication.context)
-                .cancelable(false)
                 .title("Download")
                 .content(resourceAppInfo.getLabel() + " " + message)
                 .positiveText("Confirm")
@@ -35,6 +34,14 @@ public class AppDownloadManager {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         showUpgradeProcessDialog(resourceAppInfo);
+                        dialog.dismiss();
+                    }
+                })
+                .negativeText("Cancel")
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
                     }
                 })
                 .build();

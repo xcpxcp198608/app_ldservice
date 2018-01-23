@@ -42,4 +42,30 @@ public class ResourceAppProvider implements ResultListWithParamLoader<ResourceAp
                 });
 
     }
+
+    public void loadByPackageName(String param, final ResultLoader.OnLoadListener<ResourceAppInfo> onLoadListener){
+        HttpMaster.get(Constant.url.resource_apk_by_package_name)
+                .param("packageName", param)
+                .enqueue(new ResultListener<ResourceAppInfo>(ResourceAppInfo.class) {
+                    @Override
+                    public void onFailure(String e) {
+                        Logger.e(e);
+                        onLoadListener.onSuccess(false, null);
+                    }
+
+                    @Override
+                    public void onSuccess(ResultInfo<ResourceAppInfo> resultInfo) throws Exception {
+                        if(resultInfo.getCode() !=200){
+                            onLoadListener.onSuccess(false, null);
+                            return;
+                        }
+                        ResourceAppInfo resourceAppInfo = resultInfo.getData();
+                        if(resourceAppInfo == null){
+                            onLoadListener.onSuccess(false, null);
+                            return;
+                        }
+                        onLoadListener.onSuccess(true, resourceAppInfo);
+                    }
+                });
+    }
 }

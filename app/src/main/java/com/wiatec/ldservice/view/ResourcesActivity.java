@@ -65,7 +65,7 @@ public class ResourcesActivity extends BaseActivity<ResourcesPresenter> implemen
             public void onItemClick(View view, int position) {
                 ResourceAppInfo resourceAppInfo = list.get(position);
                 if(!AppUtil.isInstalled(resourceAppInfo.getPackageName())) {
-                    installOrUpdateApp(resourceAppInfo, "Press confirm to install");
+                    installOrUpdateApp(resourceAppInfo, ", Press confirm to install");
                     return;
                 }
                 if(AppUtil.isLastVersion(resourceAppInfo.getPackageName(), resourceAppInfo.getVersionCode())){

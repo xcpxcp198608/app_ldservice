@@ -35,8 +35,8 @@ public class ChannelTypeBVisionAdapter extends BaseRecycleAdapter<ChannelTypeVie
     protected void bindHolder(ChannelTypeViewHolder holder, int position) {
         ChannelTypeInfo channelTypeInfo = channelTypeInfoList.get(position);
         holder.textView.setText(channelTypeInfo.getName());
-        ImageMaster.load(channelTypeInfo.getIcon(),holder.imageView, R.drawable.live_play_holder ,
-                R.drawable.live_play_holder);
+        ImageMaster.load(channelTypeInfo.getIcon(),holder.imageView, R.drawable.bg_button_holder ,
+                R.drawable.bg_button_holder);
     }
 
     @Override

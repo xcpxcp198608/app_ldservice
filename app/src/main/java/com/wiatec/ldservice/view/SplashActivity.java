@@ -1,7 +1,10 @@
 package com.wiatec.ldservice.view;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -39,6 +42,29 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        checkDevice();
+    }
+
+    private void checkDevice(){
+        String device = Build.MODEL;
+        if(!"BTVi3".equals(device) && !"BTV3".equals(device)){
+            showWarningDialog();
+            return;
+        }
+    }
+
+    private void showWarningDialog(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(SplashActivity.this);
+        dialog.setTitle(getString(R.string.warning));
+        dialog.setMessage(getString(R.string.no_support));
+        dialog.setCancelable(false);
+        dialog.setNegativeButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        dialog.show();
     }
 
     @Override

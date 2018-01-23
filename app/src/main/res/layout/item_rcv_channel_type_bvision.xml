@@ -13,7 +13,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:scaleType="centerCrop"
-        android:src="@drawable/live_play_holder"
+        android:src="@drawable/bg_button_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

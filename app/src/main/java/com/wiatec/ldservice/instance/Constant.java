@@ -16,6 +16,7 @@ public final class Constant {
         public static final String remote_apk = base_url + "remote/";
         public static final String remove_apk = base_url + "remove/";
         public static final String resource_apk = base_url + "resource/";
+        public static final String resource_apk_by_package_name = base_url + "resource/p";
         public static final String automatic_play = base_url + "play/";
         public static final String upgrade = base_url + "upgrade/";
 
