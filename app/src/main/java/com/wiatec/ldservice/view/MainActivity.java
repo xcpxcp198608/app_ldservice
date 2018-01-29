@@ -3,13 +3,19 @@ package com.wiatec.ldservice.view;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.px.common.animator.Zoom;
 import com.px.common.image.ImageMaster;
 import com.px.common.utils.AppUtil;
+import com.px.common.utils.CommonApplication;
 import com.wiatec.ldservice.R;
 import com.wiatec.ldservice.databinding.ActivityMainBinding;
 import com.wiatec.ldservice.instance.Constant;
@@ -42,7 +48,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain {
         }catch(Exception e){
             userLevel = 1;
         }
-        if(userLevel < 3){
+        if(userLevel >= 3){
             binding.ibtNet.setVisibility(View.GONE);
             binding.llMain.setPadding(250, 40 , 250, 40);
         }
@@ -82,9 +88,32 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain {
     }
 
     private void showResourcesActivity(){
-        ARouter.getInstance()
-                .build(Constant.route.resources)
-                .navigation();
+        if(userLevel < 3){
+            showAdNotice();
+        }else {
+            ARouter.getInstance()
+                    .build(Constant.route.resources)
+                    .navigation();
+        }
+    }
+
+    private void showAdNotice(){
+        MaterialDialog dialog = new MaterialDialog.Builder(CommonApplication.context)
+                .title(getString(R.string.notice))
+                .content(getString(R.string.ad_notice_message))
+                .positiveText(getString(R.string.confirm))
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                })
+                .build();
+        Window window = dialog.getWindow();
+        if(window != null) {
+            window.setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+        }
+        dialog.show();
     }
 
     @Override

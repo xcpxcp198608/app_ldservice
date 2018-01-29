@@ -72,32 +72,7 @@
     <string name="error_input_format">Message input format error</string>
     <string name="install_notice">To use this function, install </string>
     <string name="install_notice1">install now? </string>
-    <string name="agreement_content">LivePlay is absolutely legal and contain only links to other sites on the Internet （youtube, ZStream, Dizimag, TheVideo,etc). It does not host or upload any videos, films or media files.  LivePlay simply aggregates links in a convenient, user-friendly interface.  LivePlay is not responsible for the accuracy, compliance, copyright, legality, decency, or any other aspect of the content of other linked sites.  If you have any legal issues, please contact the appropriate media file owners or host sites.   Any legal issues regarding the free online tv, tv shows and movies on this application should be taken up with the actual file hosts and providers themselves, as we’re not affiliated with them.
-
-\r\n\nIn case of copyright infringement, please directly contact the responsible parties.  LivePlay operates as a search engine of TV, TV Shows and movies content found publicly on the internet, in principle conducting in the same way as Google.  However, LivePlay strongly believes in the protection of intellectual property and would be willing to assist when possible and applicable.  LivePlay does not accept responsibility or contents hosted on third party websites, nor do we upload videos ourselves or encourage others to do so.  The videos are streamed directly form the third-party video sharing services mentioned above.  All other trademarks, logos, and images are the property of their respective and rightful owners.
-
-\r\n\nUse LivePlay at your own risk.</string>
-    <string name="notice_protect">Parental control:\nTo setup,please type in your password and confirm. If not required, please press cancel</string>
-    <string name="password_format_error">password format error</string>
-    <string name="password_setting_success">password setting successfully</string>
-    <string name="parent_control_disabled">Parental Control disabled</string>
-    <string name="password_incorrect">password incorrect</string>
-    <string name="username_incorrect">username incorrect</string>
     <string name="ok">OK</string>
-    <string name="consent_title">CONSENT TO COLLECTION AND USE OF DATA</string>
-    <string name="consent_content">We would like to inform you regarding the “Consent to Collection and Use of Data”
-
-By Confirming “OK” below, you consent to Legacy Direct LLC collecting information from your device to allow us to dynamically serve more relevant promoted content and product support and improve our products and services.  This consent applies to all Apps you have installed or may install that contain Legacy Direct technology.
-
-The data that we collect may include information about your device, location, email, application, and browsing usage.
-
-The data we collect may be shared within our group and with select business partners, including those based outside the United States.   The data privacy regulation that apply in countries outside the USA may not offer the same level of protection as provided for inside the USA.
-
-All data that is collected is tied to your Android Advertising ID which can be reset under following path: “Google Settings->Ads->Reset advertising ID”.
-
-By confirming “OK” below, you affirm that you are over 18 years of age.
-
-We hope that you wish to help us improve your experience.  If yes, click confirm “OK”.</string>
     <string name="download_title">Downloading Resources</string>
     <string name="download_message">Please wait for download to finish.</string>
     <string name="install_error">install error</string>
@@ -108,5 +83,9 @@ We hope that you wish to help us improve your experience.  If yes, click confirm
     <string name="pay">Pay</string>
     <string name="preview">Preview</string>
     <string name="clean_history">press confirm to clean all history</string>
+    <string name="ad_notice_message">
+        For more information on MY VIP EXPERIENCE, please contact your
+        Legacy Builder Sponsor or Legacy Direct at support@legacy.direct
+    </string>
 
 </resources>
