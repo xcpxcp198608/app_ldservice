@@ -41,7 +41,12 @@ public class ResourcesActivity extends BaseActivity<ResourcesPresenter> implemen
         }catch (Exception e){
             userLevel = 1;
         }
-        presenter.loadResourcesApp(userLevel);
+        boolean isExperience = Boolean.parseBoolean(UserContentResolver.get(Constant.key.SP_IS_EXPERIENCE));
+        if(isExperience) {
+            presenter.loadResourcesApp(3);
+        }else{
+            presenter.loadResourcesApp(userLevel);
+        }
     }
 
     @Override

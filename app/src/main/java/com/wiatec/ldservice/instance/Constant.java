@@ -51,6 +51,7 @@ public final class Constant {
         public static final String key_url = "KEY_URL";
         public static final String key_duration = "KEY_DURATION";
         public static final String SP_USER_LEVEL = "userLevel";
+        public static final String SP_IS_EXPERIENCE = "experience";
     }
 
     public static final class activity{

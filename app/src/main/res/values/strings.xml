@@ -87,5 +87,10 @@
         For more information on MY VIP EXPERIENCE, please contact your
         Legacy Builder Sponsor or Legacy Direct at support@legacy.direct
     </string>
+    <string name="experience_notice_message">
+        This is the MY VIP section.  You have 7 days free trial or if you sign up to the MY VIP
+        with your credit card, you can get 28 days free trial.  After your free trial,
+        please contact your sponsor or support@legacy.direct to subscribe and continuing the usage.
+    </string>
 
 </resources>

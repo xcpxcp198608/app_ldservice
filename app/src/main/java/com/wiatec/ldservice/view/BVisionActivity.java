@@ -40,7 +40,7 @@ public class BVisionActivity extends BaseActivity<BVisionPresenter> implements I
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_bvision);
         binding.llLdFam.setOnClickListener(this);
-        presenter.loadChannelType(2+"");
+        presenter.loadChannelType(2 + "");
         presenter.loadLDFam();
         binding.btRetry.setOnClickListener(new View.OnClickListener() {
             @Override
