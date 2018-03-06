@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.px.common.http.HttpMaster;
-import com.px.common.http.listener.ListListener;
 import com.px.common.http.listener.ResultListener;
 import com.px.common.http.listener.StringListener;
 import com.px.common.http.pojo.ResultInfo;
@@ -51,7 +50,7 @@ public class ChannelProvider {
     }
 
     public void loadLiveChannel(final ResultListLoader.OnLoadListener<LiveChannelInfo> onLoadListener){
-        HttpMaster.get(Constant.url.blive_channel)
+        HttpMaster.get(Constant.url.blive_channels)
                 .enqueue(new StringListener() {
                     @Override
                     public void onSuccess(String s) throws IOException {

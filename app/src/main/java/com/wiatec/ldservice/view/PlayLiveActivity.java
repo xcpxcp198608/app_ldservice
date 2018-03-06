@@ -21,6 +21,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.CompoundButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.px.common.http.HttpMaster;
@@ -32,8 +33,13 @@ import com.px.common.utils.SPUtil;
 import com.wiatec.ldservice.R;
 import com.wiatec.ldservice.databinding.ActivityPlayLiveBinding;
 import com.wiatec.ldservice.instance.Constant;
+import com.wiatec.ldservice.model.UserContentResolver;
+
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.handshake.ServerHandshake;
 
 import java.io.IOException;
+import java.net.URI;
 import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -45,6 +51,9 @@ import java.util.TimerTask;
 public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder.Callback,
         View.OnClickListener, CompoundButton.OnCheckedChangeListener{
 
+    private static final int MSG_NET_SPEED = 1;
+    private static final int MSG_WS_COMMENT = 2;
+
     private ActivityPlayLiveBinding binding;
     private SurfaceHolder surfaceHolder;
     private MediaPlayer mediaPlayer;
@@ -53,11 +62,14 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
 
     private boolean isNeedPaid = false;
 
-    private String channel = "";
-    private String userId = "";
+    private String channelId = "";
+    private String playUserId = "";
     private String title = "";
     private String message ="";
     private String playUrl ="";
+
+    private WebSocketClient webSocketClient;
+    private StringBuilder stringBuilder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,29 +79,26 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
         surfaceHolder = binding.surfaceView.getHolder();
         surfaceHolder.addCallback(this);
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-//        liveChannelInfo = getIntent().getParcelableExtra("liveChannelInfo");
         isNeedPaid = getIntent().getBooleanExtra("isNeedPaid", false);
-
-        channel =  getIntent().getStringExtra("id");
-        userId =  getIntent().getStringExtra("userId");
+        channelId =  getIntent().getStringExtra("id");
+        playUserId =  getIntent().getStringExtra("userId");
         title =  getIntent().getStringExtra("title");
         message =  getIntent().getStringExtra("message");
         playUrl = getIntent().getStringExtra("playUrl");
 
         if(!TextUtils.isEmpty(message)) {
-            binding.tvTitle.setText(message);
-            binding.tvTitle.setVisibility(View.VISIBLE);
+            binding.tvMessage.setText(message);
+            binding.tvMessage.setVisibility(View.VISIBLE);
         }
         binding.btSend.setOnClickListener(this);
         binding.switchDanMu.setOnCheckedChangeListener(this);
-        initWebView();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         if(isNeedPaid){
-            SPUtil.put("already_preview" + userId + title, true);
+            SPUtil.put("already_preview" + playUserId + title, true);
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -103,19 +112,20 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
                 }
             }, 60000);
         }
+
         if(binding.switchDanMu.isChecked()){
             binding.etMessage.requestFocus();
             binding.etMessage.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_SEND) {
-                        sendGoEasyMessage();
+                        sendComment();
                         return true;
                     }
                     return false;
                 }
             });
-            loadWebView();
+            initWS();
         }
     }
 
@@ -199,12 +209,14 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
     protected void onPause() {
         super.onPause();
         releaseMediaPlayer();
+        closeWS();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         releaseMediaPlayer();
+        closeWS();
     }
 
     @Override
@@ -212,7 +224,7 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
         super.onDestroy();
         releaseMediaPlayer();
         send = false;
-        releaseWebView();
+        closeWS();
     }
 
     private void sendNetSpeed(){
@@ -231,7 +243,7 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
                     DecimalFormat decimalFormat = new DecimalFormat("##0.00");
                     String s = decimalFormat.format(f);
                     Message m = handler.obtainMessage();
-                    m.what = 1;
+                    m.what = MSG_NET_SPEED;
                     m.obj = s;
                     handler.sendMessage(m);
                 }
@@ -244,112 +256,102 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case 1:
+                case MSG_NET_SPEED:
                     String s = msg.obj.toString();
                     binding.tvNetSpeed.setText(s + "kbs");
+                    break;
+                case MSG_WS_COMMENT:
+                    String comment = msg.obj.toString();
+                    showComment(comment);
                     break;
             }
         }
     };
 
-    class MyWebViewClient extends WebViewClient{
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            return true;
+    private void initWS(){
+        try {
+            String watchUserId = UserContentResolver.get("userId");
+            if(TextUtils.isEmpty(watchUserId)){ watchUserId = "0";}
+            webSocketClient = new WebSocketClient(new URI(Constant.url.blive_ws_live + playUserId + "/" + watchUserId)) {
+                @Override
+                public void onOpen(ServerHandshake serverHandshake) {
+                    Logger.d("ws open");
+                }
+
+                @Override
+                public void onMessage(String message) {
+                    Logger.d("ws: " + message);
+                    Message msg = handler.obtainMessage();
+                    msg.what = MSG_WS_COMMENT;
+                    msg.obj = message;
+                    handler.sendMessage(msg);
+                }
+
+                @Override
+                public void onClose(int code, String reason, boolean remote) {
+                    Logger.d("ws close");
+                }
+
+                @Override
+                public void onError(Exception ex) {
+                    Logger.d(ex.getMessage());
+                }
+            };
+            webSocketClient.connect();
+        } catch (Exception e) {
+            Logger.e(e.getMessage());
         }
     }
 
-    private void initWebView(){
-//        binding.webView.setWebViewClient(new MyWebViewClient());
-//        binding.webView.setBackgroundColor(0);
-//        WebSettings webSettings = binding.webView.getSettings();
-//        webSettings.setJavaScriptEnabled(true);
-//        webSettings.setUseWideViewPort(true);
-//        webSettings.setLoadWithOverviewMode(true);
-//        webSettings.setSupportZoom(true);
-//        webSettings.setBuiltInZoomControls(true);
-//        webSettings.setDisplayZoomControls(false);
-//        webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-//        webSettings.setAllowFileAccess(true);
-//        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-//        webSettings.setLoadsImagesAutomatically(true);
-//        webSettings.setDefaultTextEncodingName("utf-8");
+    private void closeWS(){
+        if(webSocketClient != null){
+            webSocketClient.close();
+        }
     }
 
-    private void loadWebView(){
-//        isJSLoaded = false;
-//        binding.webView.loadUrl(Constant.url.blive_danmu_url);
-//        binding.webView.setWebChromeClient(new WebChromeClient(){
-//            @Override
-//            public void onProgressChanged(WebView view, int newProgress) {
-//                super.onProgressChanged(view, newProgress);
-//                if(newProgress >= 100){
-//                    if(!isJSLoaded) {
-//                        binding.webView.loadUrl("javascript:showDanMu('" + channel + "')");
-//                        isJSLoaded = true;
-//                    }
-//                }
-//            }
-//        });
+    private void showComment(String comment){
+       if(stringBuilder == null) {
+           stringBuilder = new StringBuilder();
+       }
+       stringBuilder.append("\r\n");
+       stringBuilder.append(comment);
+       binding.tvComment.setText(stringBuilder.toString());
+       binding.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
-    private void unloadWebView(){
-//        binding.webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-//        isJSLoaded = false;
+    private void sendComment(){
+        String comment = binding.etMessage.getText().toString();
+        if(TextUtils.isEmpty(comment)){
+            return;
+        }
+        if(webSocketClient == null){
+            return;
+        }
+        webSocketClient.send("1/" + playUserId + "/" + comment);
+        binding.etMessage.setText("");
     }
-
-    private void releaseWebView(){
-//        binding.webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-//        isJSLoaded = false;
-//        binding.webView.clearHistory();
-//        ((ViewGroup) binding.webView.getParent()).removeView(binding.webView);
-//        binding.webView.destroy();
-    }
-
 
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.btSend){
-            sendGoEasyMessage();
+            sendComment();
         }
-    }
-
-    private void sendGoEasyMessage(){
-        String message = binding.etMessage.getText().toString();
-        if(TextUtils.isEmpty(message)){
-            return;
-        }
-        HttpMaster.post("http://rest-hangzhou.goeasy.io/publish")
-                .param("appkey", "BC-6a9b6c468c894389881bc1df7d90cddb")
-                .param("channel", channel)
-                .param("content", message)
-                .enqueue(new StringListener() {
-                    @Override
-                    public void onSuccess(String s) throws IOException {
-                        binding.etMessage.setText("");
-                    }
-
-                    @Override
-                    public void onFailure(String e) {
-
-                    }
-                });
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(buttonView.getId() == R.id.switchDanMu){
             if(isChecked){
-//                binding.webView.setVisibility(View.VISIBLE);
                 binding.etMessage.setVisibility(View.VISIBLE);
                 binding.btSend.setVisibility(View.VISIBLE);
-                loadWebView();
+                binding.scrollView.setVisibility(View.VISIBLE);
+                initWS();
             }else{
-//                binding.webView.setVisibility(View.GONE);
                 binding.etMessage.setVisibility(View.GONE);
                 binding.btSend.setVisibility(View.GONE);
-                unloadWebView();
+                binding.scrollView.setVisibility(View.GONE);
+                closeWS();
             }
         }
     }

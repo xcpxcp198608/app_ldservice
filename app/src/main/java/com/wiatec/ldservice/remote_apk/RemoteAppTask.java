@@ -1,6 +1,8 @@
 package com.wiatec.ldservice.remote_apk;
 
 
+import android.os.Build;
+
 import com.px.common.http.HttpMaster;
 import com.px.common.http.listener.DownloadListener;
 import com.px.common.http.listener.ResultListener;
@@ -136,18 +138,24 @@ public class RemoteAppTask implements Runnable {
                     @Override
                     public void onFinished(DownloadInfo downloadInfo) {
                         if(AppUtil.isApkCanInstall(Application.APK_PATH, downloadInfo.getName())){
-                            if(AppUtil.isInstalled(apkInfo.getPackageName())){
-                                Logger.d(apkInfo.getPackageName() + " apk installed, delete old version");
-                                execCommand("pm", "uninstall", apkInfo.getPackageName());
-                            }
-                            Logger.d(apkInfo.getPackageName() + " apk installing");
-                            String result = execCommand("pm","install","-f",
-                                    Application.APK_PATH +"/"+apkInfo.getName());
-                            if(result.contains("Success")){
-                                Logger.d(apkInfo.getPackageName() + " apk install successfully!!!");
-                                FileUtil.delete(Application.APK_PATH, apkInfo.getName());
-                            }else{
-                                Logger.d(apkInfo.getPackageName() + " apk install failure");
+                            String model = Build.MODEL;
+                            if("BTVi3".equals(model)) {
+                                if (AppUtil.isInstalled(apkInfo.getPackageName())) {
+                                    Logger.d(apkInfo.getPackageName() + " apk installed, delete old version");
+                                    execCommand("pm", "uninstall", apkInfo.getPackageName());
+                                }
+                                Logger.d(apkInfo.getPackageName() + " apk installing");
+                                String result = execCommand("pm", "install", "-f",
+                                        Application.APK_PATH + "/" + apkInfo.getName());
+                                Logger.d(result);
+                                if (result.contains("Success")) {
+                                    Logger.d(apkInfo.getPackageName() + " apk install successfully!!!");
+                                    FileUtil.delete(Application.APK_PATH, apkInfo.getName());
+                                } else {
+                                    Logger.d(apkInfo.getPackageName() + " apk install failure");
+                                }
+                            }else if("BTVi4".equals(model)){
+                                AppUtil.silentInstall(Application.APK_PATH + "/" + apkInfo.getName());
                             }
                         }
                         apkInfoMap.remove(apkInfo.getPackageName());

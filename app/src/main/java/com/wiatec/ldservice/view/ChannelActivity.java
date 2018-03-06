@@ -211,7 +211,7 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
         binding.llLoading.setVisibility(View.GONE);
         binding.tvTotal.setText(channelInfoList.size()+"");
         binding.tvSplit.setVisibility(View.VISIBLE);
-        binding.tvPosition.setText(1+"");
+        binding.tvPosition.setText(1 + "");
 
         ChannelAdapter channelAdapter = new ChannelAdapter(channelInfoList);
         binding.rcvChannel.setAdapter(channelAdapter);

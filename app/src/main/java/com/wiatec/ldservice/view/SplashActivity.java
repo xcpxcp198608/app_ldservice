@@ -47,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void checkDevice(){
         String device = Build.MODEL;
-        if(!"BTVi3".equals(device) && !"BTV3".equals(device)){
+        if(!device.contains("BTV")){
             showWarningDialog();
             return;
         }

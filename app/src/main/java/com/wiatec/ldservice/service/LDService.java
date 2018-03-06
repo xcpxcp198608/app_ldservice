@@ -48,6 +48,6 @@ public class LDService extends Service {
     }
 
     private void executeRecycleTask(){
-        Application.getExecutorService().execute(new RemotePlayTask());
+//        Application.getExecutorService().execute(new RemotePlayTask());
     }
 }

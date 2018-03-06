@@ -109,21 +109,23 @@ public class BVisionActivity extends BaseActivity<BVisionPresenter> implements I
 
     @Override
     public void onLoadLDFam(boolean execute, List<LDFamInfo> ldFamInfoList) {
-        binding.pbLdFam.setVisibility(View.GONE);
-        if(ldFamAdapter == null){
-            ldFamAdapter = new LDFamAdapter(this, ldFamInfoList);
-        }
-        binding.lvLdFam.setAdapter(ldFamAdapter);
-        ldFamAdapter.notifyChange(ldFamInfoList);
-        binding.lvLdFam.start();
-        binding.lvLdFam.setOnScrollFinishedListener(new LDFamListView.OnScrollFinishedListener() {
-            @Override
-            public void onFinished(boolean isFinished, int position) {
-                if(presenter != null){
-                    presenter.loadLDFam();
-                }
+        if(ldFamInfoList != null) {
+            binding.pbLdFam.setVisibility(View.GONE);
+            if (ldFamAdapter == null) {
+                ldFamAdapter = new LDFamAdapter(this, ldFamInfoList);
             }
-        });
+            binding.lvLdFam.setAdapter(ldFamAdapter);
+            ldFamAdapter.notifyChange(ldFamInfoList);
+            binding.lvLdFam.start();
+            binding.lvLdFam.setOnScrollFinishedListener(new LDFamListView.OnScrollFinishedListener() {
+                @Override
+                public void onFinished(boolean isFinished, int position) {
+                    if (presenter != null) {
+                        presenter.loadLDFam();
+                    }
+                }
+            });
+        }
     }
 }
 

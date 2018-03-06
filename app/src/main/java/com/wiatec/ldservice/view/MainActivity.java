@@ -154,7 +154,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain {
     public void onLoadResourceAppByPackageName(boolean execute, ResourceAppInfo resourceAppInfo) {
         if(execute) {
             AppDownloadManager appDownloadManager = new AppDownloadManager();
-            appDownloadManager.showUpgradeDialog(resourceAppInfo, ", Press confirm to install");
+            appDownloadManager.showUpgradeDialog(resourceAppInfo, ", Press confirm to install, " +
+                    "After you have successfully install the Net Resource,  " +
+                    "please make sure run ACCCESS3.0 from your applications to install the latest resource pack.");
         }
     }
 

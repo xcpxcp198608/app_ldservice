@@ -13,6 +13,8 @@ public class LiveChannelInfo implements Parcelable {
     private String title;
     private String message;
     private String url;
+    private String rtmpUrl;
+    private String rtmpKey;
     private String playUrl;
     private String preview;
     private String category;
@@ -62,6 +64,22 @@ public class LiveChannelInfo implements Parcelable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getRtmpUrl() {
+        return rtmpUrl;
+    }
+
+    public void setRtmpUrl(String rtmpUrl) {
+        this.rtmpUrl = rtmpUrl;
+    }
+
+    public String getRtmpKey() {
+        return rtmpKey;
+    }
+
+    public void setRtmpKey(String rtmpKey) {
+        this.rtmpKey = rtmpKey;
     }
 
     public String getPlayUrl() {
@@ -135,6 +153,8 @@ public class LiveChannelInfo implements Parcelable {
                 ", title='" + title + '\'' +
                 ", message='" + message + '\'' +
                 ", url='" + url + '\'' +
+                ", rtmpUrl='" + rtmpUrl + '\'' +
+                ", rtmpKey='" + rtmpKey + '\'' +
                 ", playUrl='" + playUrl + '\'' +
                 ", preview='" + preview + '\'' +
                 ", category='" + category + '\'' +
@@ -157,6 +177,8 @@ public class LiveChannelInfo implements Parcelable {
         dest.writeString(this.title);
         dest.writeString(this.message);
         dest.writeString(this.url);
+        dest.writeString(this.rtmpUrl);
+        dest.writeString(this.rtmpKey);
         dest.writeString(this.playUrl);
         dest.writeString(this.preview);
         dest.writeString(this.category);
@@ -172,6 +194,8 @@ public class LiveChannelInfo implements Parcelable {
         this.title = in.readString();
         this.message = in.readString();
         this.url = in.readString();
+        this.rtmpUrl = in.readString();
+        this.rtmpKey = in.readString();
         this.playUrl = in.readString();
         this.preview = in.readString();
         this.category = in.readString();
@@ -182,7 +206,7 @@ public class LiveChannelInfo implements Parcelable {
         this.userId = in.readInt();
     }
 
-    public static final Creator<LiveChannelInfo> CREATOR = new Creator<LiveChannelInfo>() {
+    public static final Parcelable.Creator<LiveChannelInfo> CREATOR = new Parcelable.Creator<LiveChannelInfo>() {
         @Override
         public LiveChannelInfo createFromParcel(Parcel source) {
             return new LiveChannelInfo(source);

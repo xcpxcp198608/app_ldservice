@@ -13,7 +13,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 /**
  * app utils
@@ -34,7 +39,6 @@ public class AppUtil {
             CommonApplication.context.getPackageManager().getPackageInfo(packageName , PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
-            Logger.e(e.getMessage());
             return false;
         }
     }
@@ -297,5 +301,54 @@ public class AppUtil {
         if(intent!= null){
             context.startActivity(intent);
         }
+    }
+
+    /**
+     * silent install apk
+     * @param apkPath apk file path
+     * @return true if install successfully
+     */
+    public static boolean silentInstall(String apkPath){
+        boolean result = false;
+        DataOutputStream dataOutputStream = null;
+        BufferedReader errorStream = null;
+        try {
+            // get root permission
+            Process process = Runtime.getRuntime().exec("su");
+            dataOutputStream = new DataOutputStream(process.getOutputStream());
+            // execute pm install command
+            String command = "pm install -r " + apkPath + "\n";
+            dataOutputStream.write(command.getBytes(Charset.forName("utf-8")));
+            dataOutputStream.flush();
+            dataOutputStream.writeBytes("exit\n");
+            dataOutputStream.flush();
+            process.waitFor();
+            errorStream = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String msg = "";
+            String line;
+            // get execute result
+            while ((line = errorStream.readLine()) != null) {
+                msg += line;
+            }
+            Logger.d("install msg is " + msg);
+            // if result include Failure then install failure
+            if (!msg.contains("Failure")) {
+                result = true;
+            }
+        } catch (Exception e) {
+            Logger.e(e.getMessage());
+        } finally {
+            try {
+                if (dataOutputStream != null) {
+                    dataOutputStream.close();
+                }
+                if (errorStream != null) {
+                    errorStream.close();
+                }
+            } catch (IOException e) {
+                Logger.e(e.getMessage());
+            }
+        }
+        return result;
     }
 }
