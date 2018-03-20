@@ -35,9 +35,9 @@ public final class Constant {
 
         public static final String ld_fam = "http://www.ldlegacy.com/LDFAM/get";
 
-        public static final String blive_base = "https://blive.bvision.live:8443/blive/";
+        public static final String blive_base = "https://blive.bvision.live/";
         public static final String blive_channels = blive_base + "channel/";
-        public static final String blive_ws_live = "wss://blive.bvision.live:8443/blive/live/";
+        public static final String blive_ws_live = "wss://blive.bvision.live/live/";
         public static final String blive_danmu_url = "http://blive.bvision.live:8804/html/danmu.html";
 
     }

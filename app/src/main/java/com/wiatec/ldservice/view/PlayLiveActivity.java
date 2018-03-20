@@ -29,6 +29,7 @@ import com.px.common.http.listener.StringListener;
 import com.px.common.utils.EmojiToast;
 import com.px.common.utils.Logger;
 import com.px.common.utils.NetUtil;
+import com.px.common.utils.RegularUtil;
 import com.px.common.utils.SPUtil;
 import com.wiatec.ldservice.R;
 import com.wiatec.ldservice.databinding.ActivityPlayLiveBinding;
@@ -43,6 +44,7 @@ import java.net.URI;
 import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 
 /**
  * play
@@ -310,13 +312,16 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
     }
 
     private void showComment(String comment){
-       if(stringBuilder == null) {
-           stringBuilder = new StringBuilder();
-       }
-       stringBuilder.append("\r\n");
-       stringBuilder.append(comment);
-       binding.tvComment.setText(stringBuilder.toString());
-       binding.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+        if(stringBuilder == null) {
+            stringBuilder = new StringBuilder();
+        }
+        if(comment.startsWith("blive group count:")){
+            return;
+        }
+        stringBuilder.append("\r\n");
+        stringBuilder.append(comment);
+        binding.tvComment.setText(stringBuilder.toString());
+        binding.scrollView.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     private void sendComment(){
