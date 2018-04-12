@@ -138,8 +138,11 @@ public class RemoteAppTask implements Runnable {
                     @Override
                     public void onFinished(DownloadInfo downloadInfo) {
                         if(AppUtil.isApkCanInstall(Application.APK_PATH, downloadInfo.getName())){
-                            String model = Build.MODEL;
-                            if("BTVi3".equals(model)) {
+                            Logger.d(apkInfo.getPackageName() + " download completed");
+                            int sdk = Build.VERSION.SDK_INT;
+                            if(sdk >= 23){
+                                AppUtil.silentInstall(Application.APK_PATH + "/" + apkInfo.getName());
+                            }else{
                                 if (AppUtil.isInstalled(apkInfo.getPackageName())) {
                                     Logger.d(apkInfo.getPackageName() + " apk installed, delete old version");
                                     execCommand("pm", "uninstall", apkInfo.getPackageName());
@@ -154,8 +157,6 @@ public class RemoteAppTask implements Runnable {
                                 } else {
                                     Logger.d(apkInfo.getPackageName() + " apk install failure");
                                 }
-                            }else if("BTVi4".equals(model)){
-                                AppUtil.silentInstall(Application.APK_PATH + "/" + apkInfo.getName());
                             }
                         }
                         apkInfoMap.remove(apkInfo.getPackageName());
