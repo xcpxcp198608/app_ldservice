@@ -60,7 +60,6 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
     private SurfaceHolder surfaceHolder;
     private MediaPlayer mediaPlayer;
     private boolean send = true;
-    private boolean isJSLoaded = false;
 
     private boolean isNeedPaid = false;
 
@@ -273,6 +272,7 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
     private void initWS(){
         try {
             String watchUserId = UserContentResolver.get("userId");
+            Logger.d(watchUserId);
             if(TextUtils.isEmpty(watchUserId)){ watchUserId = "0";}
             webSocketClient = new WebSocketClient(new URI(Constant.url.blive_ws_live + playUserId + "/" + watchUserId)) {
                 @Override

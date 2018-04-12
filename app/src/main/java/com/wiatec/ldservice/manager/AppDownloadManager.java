@@ -97,7 +97,7 @@ public class AppDownloadManager {
                         progressDialog.setProgress(100);
                         progressDialog.dismiss();
                         if(AppUtil.isApkCanInstall(Application.APK_PATH, downloadInfo.getName())){
-                            AppUtil.installApk(Application.APK_PATH, downloadInfo.getName(), "");
+                            AppUtil.installApk(Application.APK_PATH, downloadInfo.getName(), "com.wiatec.ldservice.fileprovider");
                         }else{
                             FileUtil.delete(Application.APK_PATH, downloadInfo.getName());
                             EmojiToast.show(CommonApplication.context.getString(R.string.install_error), EmojiToast.EMOJI_SAD);

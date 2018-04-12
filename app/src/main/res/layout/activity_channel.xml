@@ -96,7 +96,7 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <com.wiatec.ldservice.widget.ItemRecyclerView
             android:clipChildren="false"
             android:id="@+id/rcvChannel"
             android:layout_width="match_parent"

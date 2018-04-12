@@ -74,6 +74,16 @@
             android:authorities="com.wiatec.ldservice.provider.LDProvider"
             android:permission="com.wiatec.ldservice.provider.LDProvider" />
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.wiatec.ldservice.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/path" />
+        </provider>
+
         <activity android:name=".view.ResourcesActivity"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".view.BVisionActivity"
