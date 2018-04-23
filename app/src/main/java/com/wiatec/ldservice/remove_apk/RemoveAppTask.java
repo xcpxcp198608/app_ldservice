@@ -7,7 +7,6 @@ import com.px.common.http.listener.ResultListener;
 import com.px.common.http.pojo.DownloadInfo;
 import com.px.common.http.pojo.ResultInfo;
 import com.px.common.utils.AppUtil;
-import com.px.common.utils.CommonApplication;
 import com.px.common.utils.FileUtil;
 import com.px.common.utils.Logger;
 import com.px.common.utils.NetUtil;

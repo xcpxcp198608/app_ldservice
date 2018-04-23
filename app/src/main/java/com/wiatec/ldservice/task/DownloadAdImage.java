@@ -4,12 +4,12 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.px.common.constant.CommonApplication;
 import com.px.common.http.HttpMaster;
 import com.px.common.http.listener.ListListener;
 import com.px.common.http.listener.ResultListener;
 import com.px.common.http.listener.StringListener;
 import com.px.common.http.pojo.ResultInfo;
-import com.px.common.utils.CommonApplication;
 import com.px.common.utils.Logger;
 import com.px.common.utils.NetUtil;
 import com.wiatec.ldservice.instance.Application;

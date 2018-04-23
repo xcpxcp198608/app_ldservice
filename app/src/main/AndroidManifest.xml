@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="com.wiatec.btv_launcher.provide.Read" />
     <uses-permission
         android:name="android.permission.INSTALL_PACKAGES"
@@ -28,7 +28,8 @@
         android:persistent="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
         <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -73,7 +74,6 @@
             android:name=".provider.LDProvider"
             android:authorities="com.wiatec.ldservice.provider.LDProvider"
             android:permission="com.wiatec.ldservice.provider.LDProvider" />
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.wiatec.ldservice.fileprovider"
@@ -84,24 +84,34 @@
                 android:resource="@xml/path" />
         </provider>
 
-        <activity android:name=".view.ResourcesActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.BVisionActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.AdVideoActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.ChannelActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.ChannelTypeActivity1"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.ChannelTypeActivity2"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.PlayActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.PlayFMActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".view.PlayLiveActivity"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".view.ResourcesActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.BVisionActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.AdVideoActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.ChannelActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.ChannelTypeActivity1"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.ChannelTypeActivity2"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.PlayActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.PlayFMActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".view.PlayLiveActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".view.NetResourceActivity"></activity>
     </application>
 
 </manifest>

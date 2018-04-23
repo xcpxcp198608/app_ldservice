@@ -1,7 +1,7 @@
 package com.wiatec.ldservice.instance;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.px.common.utils.CommonApplication;
+import com.px.common.constant.CommonApplication;
 import com.wiatec.ldservice.pojo.ChannelInfo;
 
 import java.util.ArrayList;

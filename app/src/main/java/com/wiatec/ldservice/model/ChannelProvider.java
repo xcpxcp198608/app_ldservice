@@ -25,7 +25,11 @@ import java.util.List;
 public class ChannelProvider {
 
     public void load(String type, final ResultListWithParamLoader.OnLoadListener<ChannelInfo> onLoadListener) {
-        HttpMaster.get(Constant.url.channel + type + Constant.url.token)
+        String url = Constant.url.channel;
+        if("LP".equals(type)){
+            url = Constant.url.lp_channel;
+        }
+        HttpMaster.get(url + type + Constant.url.token)
                 .enqueue(new ResultListener<ChannelInfo>(ChannelInfo.class) {
                     @Override
                     public void onSuccess(ResultInfo<ChannelInfo> resultInfo) throws Exception {

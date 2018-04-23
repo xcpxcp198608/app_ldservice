@@ -68,7 +68,8 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
                 type.equals("LATINO") || type.equals("USA") || type.equals("USA LOCAL NEWS") ||
                 type.equals("CHINA") || type.equals("TAIWAN") || type.equals("KOREA") ||
                 type.equals("JAPAN") || type.equals("ASIA") || type.equals("EUROPE") ||
-                type.equals("AFRICA") || type.equals("MIDEAST") || type.equals("HISTORY")){
+                type.equals("AFRICA") || type.equals("MIDEAST") || type.equals("HISTORY") ||
+                type.equals("LP")){
             binding.llSearch.setVisibility(View.GONE);
         }
         key = getIntent().getStringExtra(Constant.key.key_search);

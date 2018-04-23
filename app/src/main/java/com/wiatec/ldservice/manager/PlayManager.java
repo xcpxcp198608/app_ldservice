@@ -2,10 +2,10 @@ package com.wiatec.ldservice.manager;
 
 import android.text.TextUtils;
 
+import com.px.common.constant.CommonApplication;
 import com.px.common.http.HttpMaster;
 import com.px.common.http.listener.StringListener;
 import com.px.common.utils.AESUtil;
-import com.px.common.utils.CommonApplication;
 import com.px.common.utils.EmojiToast;
 import com.px.common.utils.Logger;
 import com.px.common.utils.SPUtil;

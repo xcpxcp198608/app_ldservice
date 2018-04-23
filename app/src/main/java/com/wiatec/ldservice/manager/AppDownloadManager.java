@@ -7,11 +7,11 @@ import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.px.common.constant.CommonApplication;
 import com.px.common.http.HttpMaster;
 import com.px.common.http.listener.DownloadListener;
 import com.px.common.http.pojo.DownloadInfo;
 import com.px.common.utils.AppUtil;
-import com.px.common.utils.CommonApplication;
 import com.px.common.utils.EmojiToast;
 import com.px.common.utils.FileUtil;
 import com.wiatec.ldservice.R;

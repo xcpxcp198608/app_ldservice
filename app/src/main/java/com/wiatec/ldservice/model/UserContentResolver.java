@@ -3,7 +3,8 @@ package com.wiatec.ldservice.model;
 import android.content.ContentResolver;
 import android.net.Uri;
 
-import com.px.common.utils.CommonApplication;
+import com.px.common.constant.CommonApplication;
+
 
 /**
  * get user information from btv_launcher by content provider

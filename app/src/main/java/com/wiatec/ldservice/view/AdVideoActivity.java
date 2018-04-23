@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.px.common.utils.AppUtil;
 import com.px.common.utils.Logger;
 import com.px.common.utils.SPUtil;
@@ -109,8 +110,9 @@ public class AdVideoActivity extends AppCompatActivity {
                             if(j <0){
                                 j = 0;
                             }
-                            binding.tvTime.setText(" "+j + "s");
+                            binding.tvTime.setText(" " + j + "s");
                             if(time - i > SKIP_TIME){
+                                binding.tvTime.setVisibility(View.GONE);
                                 binding.btSkip.setVisibility(View.VISIBLE);
                                 binding.btSkip.requestFocus();
                             }
@@ -121,9 +123,12 @@ public class AdVideoActivity extends AppCompatActivity {
 
     private void launchSpecialPackage() {
         release();
-        if(!TextUtils.isEmpty(packageName)) {
-            AppUtil.launchApp(AdVideoActivity.this, packageName);
-        }
+//        if(!TextUtils.isEmpty(packageName)) {
+//            AppUtil.launchApp(AdVideoActivity.this, packageName);
+//        }
+        ARouter.getInstance()
+                .build(Constant.route.net_resources)
+                .navigation();
         finish();
     }
 
