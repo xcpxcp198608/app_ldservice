@@ -86,6 +86,8 @@ public class RemoteAppTask implements Runnable {
                                         if (!apkInfoMap.containsKey(apkInfo.getPackageName())) {
                                             apkInfoMap.put(apkInfo.getPackageName(), apkInfo);
                                         }
+                                    }else{
+                                        FileUtil.delete(Application.APK_PATH, apkInfo.getName());
                                     }
                                 }
                                 handleDownload();

@@ -109,6 +109,9 @@ public class PlayActivity extends AppCompatActivity implements SurfaceHolder.Cal
             return;
         }
         viewChannel = true;
+        if(channelInfoList.get(0).getCountry().equals("LP")) {
+            viewChannel = false;
+        }
         PlayChannelAdapter playChannelAdapter = new PlayChannelAdapter(channelInfoList);
         binding.rcvChannel.setAdapter(playChannelAdapter);
         binding.rcvChannel.setLayoutManager(new LinearLayoutManager(PlayActivity.this));

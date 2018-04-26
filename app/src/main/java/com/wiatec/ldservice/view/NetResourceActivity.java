@@ -43,7 +43,7 @@ public class NetResourceActivity extends AppCompatActivity {
             ResourceAppInfo resourceAppInfo1 = new ResourceAppInfo();
             resourceAppInfo1.setPackageName("LP");
             resourceAppInfo1.setIcon("https://s1.ax1x.com/2018/01/27/pOeBEF.png");
-            resourceAppInfo1.setLabel("NetResource Pro");
+            resourceAppInfo1.setLabel("Live TV");
             List<ResourceAppInfo> list = new ArrayList<>();
             list.add(resourceAppInfo);
             list.add(resourceAppInfo1);
