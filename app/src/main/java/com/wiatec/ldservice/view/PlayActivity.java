@@ -229,9 +229,11 @@ public class PlayActivity extends AppCompatActivity implements SurfaceHolder.Cal
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     Logger.d("completion");
+                    playOtherUrlOnVideo(urlList);
+                    binding.tvNetSpeed.setVisibility(View.VISIBLE);
 //                    playOtherUrlOnVideo(urlList);
-                    currentPlayPosition = 0;
-                    playManager.nextChannel();
+//                    currentPlayPosition = 0;
+//                    playManager.nextChannel();
                 }
             });
             mediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
@@ -382,6 +384,9 @@ public class PlayActivity extends AppCompatActivity implements SurfaceHolder.Cal
                     binding.llController.setVisibility(View.GONE);
                     binding.rcvChannel.setVisibility(View.GONE);
                 }else{
+                    if(mediaPlayer == null){
+                        return;
+                    }
                     if(mediaPlayer != null && mediaPlayer.isPlaying()){
                         binding.ibtStartStop.setBackgroundResource(R.drawable.bg_button_pause);
                     }else{
