@@ -14,6 +14,7 @@ import com.wiatec.ldservice.pojo.ChannelInfo;
 import com.wiatec.ldservice.pojo.LiveChannelInfo;
 import com.wiatec.ldservice.sql.FavoriteChannelDao;
 import com.wiatec.ldservice.sql.HistoryChannelDao;
+import com.wiatec.ldservice.utils.SystemUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,6 +42,16 @@ public class ChannelProvider {
                         if(list == null || list.size() <= 0){
                             onLoadListener.onSuccess(false, null);
                             return;
+                        }
+                        for(int i = 0; i < list.size(); i ++){
+                            ChannelInfo channelInfo = list.get(i);
+                            if(channelInfo.getChannelId() == 1099559 ||
+                                    channelInfo.getChannelId() == 1013147 ||
+                                    channelInfo.getChannelId() == 1013150){
+                                if(!SystemUtils.isLatestRom()){
+                                    list.remove(i);
+                                }
+                            }
                         }
                         onLoadListener.onSuccess(true, list);
                     }

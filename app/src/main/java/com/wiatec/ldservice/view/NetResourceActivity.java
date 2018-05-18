@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.px.common.adapter.BaseRecycleAdapter;
 import com.px.common.animator.Zoom;
 import com.px.common.utils.AppUtil;
+import com.px.common.utils.SysUtil;
 import com.wiatec.ldservice.R;
 import com.wiatec.ldservice.adapter.ResourcesAppAdapter;
 import com.wiatec.ldservice.databinding.ActivityNetResourceBinding;
@@ -22,6 +23,7 @@ import com.wiatec.ldservice.model.UserContentResolver;
 import com.wiatec.ldservice.pojo.ResourceAppInfo;
 import com.wiatec.ldservice.presenter.ResourcesPresenter;
 import com.wiatec.ldservice.task.TokenTask;
+import com.wiatec.ldservice.utils.SystemUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,6 @@ public class NetResourceActivity extends AppCompatActivity {
             list.add(resourceAppInfo1);
             showResourcesApp(list);
         }
-
 
         private void showResourcesApp(final List<ResourceAppInfo> list){
             ResourcesAppAdapter resourcesAppAdapter = new ResourcesAppAdapter(list);
