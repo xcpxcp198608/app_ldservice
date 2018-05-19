@@ -45,9 +45,7 @@ public class ChannelProvider {
                         }
                         for(int i = 0; i < list.size(); i ++){
                             ChannelInfo channelInfo = list.get(i);
-                            if(channelInfo.getChannelId() == 1099559 ||
-                                    channelInfo.getChannelId() == 1013147 ||
-                                    channelInfo.getChannelId() == 1013150){
+                            if(channelInfo.isLockInBasic()){
                                 if(!SystemUtils.isLatestRom()){
                                     list.remove(i);
                                 }

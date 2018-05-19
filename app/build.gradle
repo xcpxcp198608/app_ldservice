@@ -84,5 +84,5 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.2'
     compile 'com.paypal.sdk:paypal-android-sdk:2.15.3'
     compile "org.java-websocket:Java-WebSocket:1.3.5"
-    implementation 'com.px.library:module_common:1.0.2'
+    implementation 'com.px.library:module_common:1.0.3'
 }
