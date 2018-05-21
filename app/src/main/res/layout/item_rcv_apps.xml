@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:layout_margin="10dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:background="@drawable/bg_item_channel"
+    android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <ImageView
+        android:src="@mipmap/module_common_ic_launcher"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:cropToPadding="true"
+        android:id="@+id/ivIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:layout_toRightOf="@id/ivIcon"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/tvLabel"
+        android:gravity="center_vertical"
+        tool:text="sdfdsfsdf"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:textColor="@android:color/white"
+        android:layout_width="500dp"
+        android:layout_height="60dp" />
+
+    <Button
+        android:textAllCaps="false"
+        android:text="Uninstall"
+        android:textColor="@android:color/white"
+        android:background="@drawable/bg_button_cancel"
+        android:id="@+id/btUninstall"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

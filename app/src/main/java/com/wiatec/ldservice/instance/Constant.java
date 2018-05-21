@@ -63,9 +63,40 @@ public final class Constant {
     }
 
     public static final class package_name{
-        public static final String live_play = "com.wiatec.bplay";
         public static final String market = "com.px.bmarket";
         public static final String net_resources = "org.xbmc.kodi";
+        public static final String btv= "org.xbmc.kodi";
+        public static final String setting = "com.android.tv.settings";
+        public static final String cloud = "com.legacydirect.tvphoto";
+        public static final String legacy_antivirus =  "com.legacydirect.security.suite";
+        public static final String legacy_privacy =  "com.legacydirect.privacyadvisor";
+        public static final String file = "com.droidlogic.FileBrower";
+        public static final String tvplus = "com.elinkway.tvlive2";
+        public static final String joinme = "com.logmein.joinme";
+        public static final String spotify = "com.spotify.tv.android";
+        public static final String happy_chick = "com.xiaoji.tvbox";
+        public static final String bplay = "com.wiatec.bplay";
+        public static final String live_net = "com.livenet.iptv";
+        public static final String show_box = "com.tdo.showbox";
+        public static final String tv_house = "com.fanshi.tvvideo";
+        public static final String mx_player = "com.mxtech.videoplayer.ad";
+        public static final String terrarium_tv = "com.nitroxenon.terrarium";
+        public static final String popcom = "pct.droid";
+        public static final String ldservice = "com.wiatec.ldservice";
+        public static final String lddream = "com.wiatec.lddream";
+        public static final String dianshijia3 = "com.dianshijia.newlive";
+        public static final String live_net_new = "com.streams.androidnettv";
+        public static final String bluetooth_remote = "com.droidlogic.BluetoothRemote";
+        public static final String factory_test = "com.amlogic.factorytest";
+        public static final String remote_control = "com.droidlogic.service.remotecontrol";
+        public static final String read_log = "com.droidlogic.readlog";
+        public static final String input_method = "com.android.inputmethod.latin";
+        public static final String web_view = "com.google.android.webview";
+        public static final String clock = "com.android.deskclock";
+        public static final String live_play = "com.live.play";
+        public static final String mobdro = "com.mobdro.android";
+        public static final String morpheustv = "com.android.morpheustv";
+        public static final String nitrotv = "com.myspecial.launcher.nitrotv";
     }
 
     public static final class route{
@@ -73,6 +104,7 @@ public final class Constant {
         public static final String resources = "/ac/resources";
         public static final String net_resources = "/ac/net_resources";
         public static final String bvision = "/ac/bvision";
+        public static final String apps = "/ac/apps";
         public static final String ad_video = "/ac/ad_video";
     }
 

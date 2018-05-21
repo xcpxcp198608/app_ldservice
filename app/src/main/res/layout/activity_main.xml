@@ -58,5 +58,17 @@
             android:layout_marginLeft="40dp" />
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ibtApps"
+        android:layout_margin="10dp"
+        android:src="@drawable/apps_buscon_set_btn"
+        android:background="@drawable/bg_item_resource_app"
+        android:scaleType="fitCenter"
+        android:cropToPadding="true"
+        android:onClick="@{(view) -> onEvent.onClick(view)}"
+        android:layout_gravity="bottom|right"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
 </FrameLayout>
 </layout>
