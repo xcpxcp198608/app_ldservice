@@ -21,7 +21,7 @@ public class RemotePlayTask implements Runnable {
 
     @Override
     public void run() {
-        start();
+//        start();
     }
 
     private void start() {

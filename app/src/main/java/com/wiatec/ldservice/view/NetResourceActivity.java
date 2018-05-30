@@ -46,7 +46,12 @@ public class NetResourceActivity extends AppCompatActivity {
             resourceAppInfo1.setPackageName("LP");
             resourceAppInfo1.setIcon("https://s1.ax1x.com/2018/01/27/pOeBEF.png");
             resourceAppInfo1.setLabel("Live TV");
+            ResourceAppInfo resourceAppInfo2 = new ResourceAppInfo();
+            resourceAppInfo2.setPackageName("com.remote.server");
+            resourceAppInfo2.setIcon("https://s1.ax1x.com/2018/05/23/CRBpNT.png");
+            resourceAppInfo2.setLabel("B·Keymo AIR");
             List<ResourceAppInfo> list = new ArrayList<>();
+            list.add(resourceAppInfo2);
             list.add(resourceAppInfo);
             list.add(resourceAppInfo1);
             showResourcesApp(list);
@@ -55,7 +60,7 @@ public class NetResourceActivity extends AppCompatActivity {
         private void showResourcesApp(final List<ResourceAppInfo> list){
             ResourcesAppAdapter resourcesAppAdapter = new ResourcesAppAdapter(list);
             binding.rcvResourcesApp.setAdapter(resourcesAppAdapter);
-            binding.rcvResourcesApp.setLayoutManager(new GridLayoutManager(this, 2));
+            binding.rcvResourcesApp.setLayoutManager(new GridLayoutManager(this, 3));
             resourcesAppAdapter.setZoom(false);
             resourcesAppAdapter.setOnItemClickListener(new BaseRecycleAdapter.OnItemClickListener() {
                 @Override
@@ -66,6 +71,9 @@ public class NetResourceActivity extends AppCompatActivity {
                             AppUtil.launchApp(NetResourceActivity.this, resourceAppInfo.getPackageName());
                             break;
                         case 1:
+                            AppUtil.launchApp(NetResourceActivity.this, resourceAppInfo.getPackageName());
+                            break;
+                        case 2:
                             Application.getExecutorService().execute(new TokenTask());
                             Intent intent = new Intent(NetResourceActivity.this, ChannelActivity.class);
                             intent.putExtra(Constant.key.channel_type, resourceAppInfo.getPackageName());

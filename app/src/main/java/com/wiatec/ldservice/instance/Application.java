@@ -25,8 +25,6 @@ public class Application extends CommonApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        ARouter.openLog();
-        ARouter.openDebug();
         ARouter.init(this);
         executorService = Executors.newCachedThreadPool();
         AD_IMAGE_PATH = getExternalFilesDir("ad_images").getAbsolutePath();

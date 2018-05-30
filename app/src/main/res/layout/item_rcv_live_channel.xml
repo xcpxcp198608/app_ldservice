@@ -44,6 +44,19 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvType"
+        android:visibility="gone"
+        tool:text="live"
+        android:textColor="@android:color/holo_red_light"
+        android:background="@color/colorTranslucent5"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:layout_margin="3dp"
+        android:padding="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
         android:id="@+id/tvPrice"
         android:textColor="@android:color/white"
         android:background="@android:color/holo_red_light"

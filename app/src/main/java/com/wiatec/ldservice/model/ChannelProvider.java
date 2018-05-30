@@ -67,8 +67,13 @@ public class ChannelProvider {
                 .enqueue(new StringListener() {
                     @Override
                     public void onSuccess(String s) throws IOException {
-                        List<LiveChannelInfo> liveChannelInfoList = new Gson().fromJson(s,
-                                new TypeToken<List<LiveChannelInfo>>(){}.getType());
+                        ResultInfo<LiveChannelInfo> resultInfo = new Gson().fromJson(s,
+                                new TypeToken<ResultInfo<LiveChannelInfo>>(){}.getType());
+                        if(resultInfo == null){
+                            onLoadListener.onSuccess(false, null);
+                            return;
+                        }
+                        List<LiveChannelInfo> liveChannelInfoList = resultInfo.getDataList();
                         if(liveChannelInfoList == null || liveChannelInfoList.size() <= 0){
                             onLoadListener.onSuccess(false, null);
                             return;

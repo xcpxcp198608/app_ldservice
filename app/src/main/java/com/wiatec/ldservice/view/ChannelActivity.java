@@ -18,6 +18,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.px.common.adapter.BaseRecycleAdapter;
 import com.px.common.animator.Zoom;
+import com.px.common.utils.AESUtil;
 import com.px.common.utils.EmojiToast;
 import com.px.common.utils.Logger;
 import com.px.common.utils.SPUtil;
@@ -63,7 +64,6 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
         binding = DataBindingUtil.setContentView(this, R.layout.activity_channel);
         PayPalConfig.startPayPalService(this);
         type = getIntent().getStringExtra(Constant.key.channel_type);
-        Logger.d(type);
         if(type.equals("FAVORITE") || type.equals("SPORTS") || type.equals("SPORTS EVENT") ||
                 type.equals("LATINO") || type.equals("USA") || type.equals("USA LOCAL NEWS") ||
                 type.equals("CHINA") || type.equals("TAIWAN") || type.equals("KOREA") ||
@@ -259,6 +259,7 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
             }
             return;
         }
+        Logger.d(liveChannelInfoList.toString());
         binding.llLoading.setVisibility(View.GONE);
         binding.tvTotal.setText(liveChannelInfoList.size()+"");
         binding.tvSplit.setVisibility(View.VISIBLE);
@@ -408,7 +409,7 @@ public class ChannelActivity extends BaseActivity<ChannelPresenter> implements I
         intent.putExtra("userId", liveChannelInfo.getUserId()+"");
         intent.putExtra("title", liveChannelInfo.getTitle());
         intent.putExtra("message", liveChannelInfo.getMessage());
-        intent.putExtra("playUrl", liveChannelInfo.getPlayUrl());
+        intent.putExtra("playUrl", AESUtil.decrypt(liveChannelInfo.getPlayUrl(), AESUtil.KEY));
         startActivity(intent);
     }
 

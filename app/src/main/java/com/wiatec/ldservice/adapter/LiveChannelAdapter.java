@@ -1,5 +1,6 @@
 package com.wiatec.ldservice.adapter;
 
+import android.graphics.Color;
 import android.view.View;
 
 import com.px.common.adapter.BaseRecycleAdapter;
@@ -39,8 +40,19 @@ public class LiveChannelAdapter extends BaseRecycleAdapter<LiveChannelViewHolder
             holder.tvPrice.setText("$"+liveChannelInfo.getPrice());
             holder.tvPrice.setVisibility(View.VISIBLE);
         }
-        ImageMaster.load(liveChannelInfo.getPreview(), holder.imageView, R.drawable.img_hold,
-                R.drawable.img_hold);
+        if(liveChannelInfo.getType() == 1){
+            holder.tvType.setText("Live");
+            holder.tvType.setTextColor(Color.RED);
+            holder.tvType.setVisibility(View.VISIBLE);
+        }else if(liveChannelInfo.getType() == 2){
+            holder.tvType.setText("Vod");
+            holder.tvType.setTextColor(Color.BLUE);
+            holder.tvType.setVisibility(View.VISIBLE);
+        }else{
+            holder.tvType.setVisibility(View.GONE);
+        }
+        ImageMaster.load(liveChannelInfo.getPreview(), holder.imageView, R.drawable.img_hold_bvision,
+                R.drawable.img_hold_bvision);
     }
 
     @Override

@@ -16,12 +16,14 @@ public class LiveChannelViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView imageView;
     public TextView textView;
+    public TextView tvType;
     public TextView tvPrice;
 
     public LiveChannelViewHolder(View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.imageView);
         textView = itemView.findViewById(R.id.textView);
+        tvType = itemView.findViewById(R.id.tvType);
         tvPrice = itemView.findViewById(R.id.tvPrice);
 
     }

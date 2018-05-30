@@ -36,22 +36,21 @@
         android:id="@+id/tvMessage"
         android:visibility="gone"
         android:layout_gravity="bottom"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="60dp"
         android:textColor="@android:color/white"
         android:textSize="35sp"
         android:textStyle="bold"
         tools:text="Living"
         android:padding="5dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="200dp"
         android:background="@drawable/bg_live_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="200dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
 
     <LinearLayout
+        android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -93,15 +92,16 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
         <TextView
             android:id="@+id/tvComment"
             android:layout_width="match_parent"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_orange_light"
             tools:text="guest:234234234"
             android:layout_height="wrap_content" />
     </ScrollView>

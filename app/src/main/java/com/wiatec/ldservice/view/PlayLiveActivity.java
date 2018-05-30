@@ -24,6 +24,8 @@ import android.widget.CompoundButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.px.common.http.HttpMaster;
 import com.px.common.http.listener.StringListener;
 import com.px.common.utils.EmojiToast;
@@ -35,6 +37,7 @@ import com.wiatec.ldservice.R;
 import com.wiatec.ldservice.databinding.ActivityPlayLiveBinding;
 import com.wiatec.ldservice.instance.Constant;
 import com.wiatec.ldservice.model.UserContentResolver;
+import com.wiatec.ldservice.pojo.ChannelCommentInfo;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -272,7 +275,6 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
     private void initWS(){
         try {
             String watchUserId = UserContentResolver.get("userId");
-            Logger.d(watchUserId);
             if(TextUtils.isEmpty(watchUserId)){ watchUserId = "0";}
             webSocketClient = new WebSocketClient(new URI(Constant.url.blive_ws_live + playUserId + "/" + watchUserId)) {
                 @Override
@@ -282,11 +284,23 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
 
                 @Override
                 public void onMessage(String message) {
-                    Logger.d("ws: " + message);
-                    Message msg = handler.obtainMessage();
-                    msg.what = MSG_WS_COMMENT;
-                    msg.obj = message;
-                    handler.sendMessage(msg);
+                    Logger.d("wss: " + message);
+                    ChannelCommentInfo channelCommentInfo = null;
+                    try {
+                        channelCommentInfo = new Gson().fromJson(message,
+                                new TypeToken<ChannelCommentInfo>() {}.getType());
+                    }catch (Exception e){
+                        Logger.e("ws message json parse error");
+                    }
+                    if(channelCommentInfo == null){
+                        return;
+                    }
+                    if(channelCommentInfo.getType() == ChannelCommentInfo.TYPE_LIVE_TEXT_COMMENT) {
+                        Message msg = handler.obtainMessage();
+                        msg.what = MSG_WS_COMMENT;
+                        msg.obj = channelCommentInfo.getViewerUsername() + ": " + channelCommentInfo.getComment();
+                        handler.sendMessage(msg);
+                    }
                 }
 
                 @Override
@@ -332,7 +346,13 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
         if(webSocketClient == null){
             return;
         }
-        webSocketClient.send("1/" + playUserId + "/" + comment);
+        ChannelCommentInfo channelCommentInfo = new ChannelCommentInfo();
+        channelCommentInfo.setPusherId(Integer.parseInt(playUserId));
+        channelCommentInfo.setViewerId(Integer.parseInt(UserContentResolver.get("userId")));
+        channelCommentInfo.setScope(ChannelCommentInfo.SCOPE_GROUP);
+        channelCommentInfo.setType(ChannelCommentInfo.TYPE_LIVE_TEXT_COMMENT);
+        channelCommentInfo.setComment(comment);
+        webSocketClient.send(new Gson().toJson(channelCommentInfo));
         binding.etMessage.setText("");
     }
 
