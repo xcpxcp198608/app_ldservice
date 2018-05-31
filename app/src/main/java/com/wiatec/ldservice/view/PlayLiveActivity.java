@@ -352,8 +352,13 @@ public class PlayLiveActivity extends AppCompatActivity implements SurfaceHolder
         channelCommentInfo.setScope(ChannelCommentInfo.SCOPE_GROUP);
         channelCommentInfo.setType(ChannelCommentInfo.TYPE_LIVE_TEXT_COMMENT);
         channelCommentInfo.setComment(comment);
-        webSocketClient.send(new Gson().toJson(channelCommentInfo));
-        binding.etMessage.setText("");
+        try {
+            webSocketClient.send(new Gson().toJson(channelCommentInfo));
+            binding.etMessage.setText("");
+        }catch (Exception e){
+            Logger.e("webSocketClient connect error");
+        }
+
     }
 
 

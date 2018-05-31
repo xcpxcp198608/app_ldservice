@@ -7,8 +7,8 @@ android {
         applicationId "com.wiatec.ldservice"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 110
-        versionName "v1.1.0"
+        versionCode 111
+        versionName "v1.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
