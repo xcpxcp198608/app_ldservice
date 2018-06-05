@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.px.common.http.HttpMaster;
 import com.px.common.http.listener.StringListener;
 import com.px.common.http.pojo.ResultInfo;
+import com.px.common.utils.Logger;
 import com.wiatec.ldservice.instance.Constant;
 import com.wiatec.ldservice.pojo.ChannelTypeInfo;
 
@@ -40,6 +41,7 @@ public class ChannelTypeProvider implements ResultListWithParamLoader<ChannelTyp
 
                     @Override
                     public void onFailure(String e) {
+                        Logger.e(e);
                         onLoadListener.onSuccess(false, null);
                     }
                 });

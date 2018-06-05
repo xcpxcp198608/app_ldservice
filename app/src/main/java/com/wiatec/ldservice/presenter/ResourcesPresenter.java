@@ -22,11 +22,25 @@ public class ResourcesPresenter extends BasePresenter<IResources> {
         resourceApp = new ResourceAppProvider();
     }
 
-    public void loadResourcesApp(int userLevel){
-        resourceApp.load(userLevel+"", new ResultListWithParamLoader.OnLoadListener<ResourceAppInfo>() {
+    public void loadResourcesApp(final int userLevel){
+        resourceApp.loadFromLocal(new ResultListWithParamLoader.OnLoadListener<ResourceAppInfo>() {
             @Override
             public void onSuccess(boolean execute, List<ResourceAppInfo> list) {
-                iResources.onResourcesAppLoaded(execute, list);
+                if(execute){
+                    iResources.onResourcesAppLoaded(execute, list);
+                }else{
+                    resourceApp.load(userLevel + "", new ResultListWithParamLoader.OnLoadListener<ResourceAppInfo>() {
+                        @Override
+                        public void onSuccess(boolean execute, List<ResourceAppInfo> list) {
+                            iResources.onResourcesAppLoaded(execute, list);
+                        }
+
+                        @Override
+                        public void onFailure(String e) {
+
+                        }
+                    });
+                }
             }
 
             @Override
@@ -34,5 +48,8 @@ public class ResourcesPresenter extends BasePresenter<IResources> {
 
             }
         });
+
+
+
     }
 }

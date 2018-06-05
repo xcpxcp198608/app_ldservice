@@ -45,6 +45,9 @@ public class BVisionActivity extends BaseActivity<BVisionPresenter> implements I
         binding.btRetry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                binding.tvLoading.setText(getString(R.string.loading));
+                binding.pbLoading.setVisibility(View.VISIBLE);
+                binding.btRetry.setVisibility(View.GONE);
                 presenter.loadChannelType(2+"");
             }
         });

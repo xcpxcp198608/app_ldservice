@@ -12,7 +12,7 @@
     android:layout_height="70dp">
 
     <ImageView
-        android:src="@mipmap/module_common_ic_launcher"
+        android:src="@mipmap/ic_launcher_round"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:cropToPadding="true"

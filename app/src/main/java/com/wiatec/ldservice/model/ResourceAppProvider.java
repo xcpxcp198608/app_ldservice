@@ -4,8 +4,10 @@ import com.px.common.http.HttpMaster;
 import com.px.common.http.listener.ResultListener;
 import com.px.common.http.pojo.ResultInfo;
 import com.px.common.utils.Logger;
+import com.wiatec.ldservice.instance.Application;
 import com.wiatec.ldservice.instance.Constant;
 import com.wiatec.ldservice.pojo.ResourceAppInfo;
+import com.wiatec.ldservice.sql.ResourceAppDao;
 
 import java.util.List;
 
@@ -23,24 +25,54 @@ public class ResourceAppProvider implements ResultListWithParamLoader<ResourceAp
                     @Override
                     public void onFailure(String e) {
                         Logger.e(e);
-                        onLoadListener.onSuccess(false, null);
+                        if(onLoadListener != null) {
+                            onLoadListener.onSuccess(false, null);
+                        }
                     }
 
                     @Override
                     public void onSuccess(ResultInfo<ResourceAppInfo> resultInfo) throws Exception {
                         if(resultInfo.getCode() !=200){
-                            onLoadListener.onSuccess(false, null);
+                            if(onLoadListener != null) {
+                                onLoadListener.onSuccess(false, null);
+                            }
                             return;
                         }
-                        List<ResourceAppInfo> list = resultInfo.getDataList();
+                        final List<ResourceAppInfo> list = resultInfo.getDataList();
                         if(list == null || list.size() <=0){
-                            onLoadListener.onSuccess(false, null);
+                            if(onLoadListener != null) {
+                                onLoadListener.onSuccess(false, null);
+                            }
                             return;
                         }
-                        onLoadListener.onSuccess(true, list);
+                        if(onLoadListener != null) {
+                            onLoadListener.onSuccess(true, list);
+                        }
+                        Application.getExecutorService().execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                ResourceAppDao resourceAppDao = ResourceAppDao.getInstance();
+                                resourceAppDao.deleteAll();
+                                resourceAppDao.batchInsert(list);
+                            }
+                        });
                     }
                 });
 
+    }
+
+    public void loadFromLocal(OnLoadListener<ResourceAppInfo> onLoadListener){
+        ResourceAppDao resourceAppDao = ResourceAppDao.getInstance();
+        List<ResourceAppInfo> list = resourceAppDao.queryAll();
+        if(list == null || list.size() <=0){
+            if(onLoadListener != null) {
+                onLoadListener.onSuccess(false, null);
+            }
+            return;
+        }
+        if(onLoadListener != null) {
+            onLoadListener.onSuccess(true, list);
+        }
     }
 
     public void loadByPackageName(String param, final ResultLoader.OnLoadListener<ResourceAppInfo> onLoadListener){

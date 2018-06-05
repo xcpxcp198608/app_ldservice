@@ -11,7 +11,8 @@ public final class Constant {
 
     public static final class url{
 
-        private static final String base_url = "http://ldservice.ldlegacy.com/ldservice/";
+        private static final String base_url = "http://ldservice.v2.ldlegacy.com:8080/ldservice/";
+        public static final String ld_fam = "http://ldfam.v2.ldlegacy.com:8084/LDFAM/get";
 
         public static final String remote_apk = base_url + "remote/";
         public static final String remove_apk = base_url + "remove/";
@@ -19,7 +20,6 @@ public final class Constant {
         public static final String resource_apk_by_package_name = base_url + "resource/p";
         public static final String automatic_play = base_url + "play/";
         public static final String upgrade = base_url + "upgrade/";
-
 
         public static final String ad_image = base_url +"ad_image/";
         public static final String channel = base_url +"bvision/channel/";
@@ -35,13 +35,9 @@ public final class Constant {
 
         public static final String lp_channel = "http://lp.ldlegacy.com/liveplay/channels/list/";
 
-
-        public static final String ld_fam = "http://www.ldlegacy.com/LDFAM/get";
-
         public static final String blive_base = "https://blive.bvision.live/";
         public static final String blive_channels = blive_base + "channel/btv";
         public static final String blive_ws_live = "wss://blive.bvision.live/live/";
-        public static final String blive_danmu_url = "http://blive.bvision.live:8804/html/danmu.html";
 
     }
 

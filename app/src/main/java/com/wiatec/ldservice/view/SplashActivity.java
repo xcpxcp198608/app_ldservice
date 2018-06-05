@@ -29,6 +29,8 @@ import com.px.common.utils.NetUtil;
 import com.wiatec.ldservice.R;
 import com.wiatec.ldservice.instance.Application;
 import com.wiatec.ldservice.instance.Constant;
+import com.wiatec.ldservice.model.ResourceAppProvider;
+import com.wiatec.ldservice.model.UserContentResolver;
 import com.wiatec.ldservice.pojo.UpgradeInfo;
 import com.wiatec.ldservice.task.DownloadAdImage;
 
@@ -71,6 +73,18 @@ public class SplashActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Application.getExecutorService().execute(new DownloadAdImage());
+        int userLevel;
+        try {
+            userLevel = Integer.parseInt(UserContentResolver.get(Constant.key.SP_USER_LEVEL));
+        }catch (Exception e){
+            userLevel = 1;
+        }
+        boolean isExperience = Boolean.parseBoolean(UserContentResolver.get(Constant.key.SP_IS_EXPERIENCE));
+        if(isExperience) {
+            new ResourceAppProvider().load("3", null);
+        }else{
+            new ResourceAppProvider().load(userLevel + "", null);
+        }
         check();
     }
 
