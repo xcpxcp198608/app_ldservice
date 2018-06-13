@@ -41,6 +41,9 @@ public class PlayManager {
         this.channelInfoList = channelInfoList;
         this.currentPosition = currentPosition;
         historyChannelDao = HistoryChannelDao.getInstance();
+        if(currentPosition >= channelInfoList.size()){
+            return;
+        }
         channelInfo = channelInfoList.get(currentPosition);
         String levelStr = UserContentResolver.get("userLevel");
         try {

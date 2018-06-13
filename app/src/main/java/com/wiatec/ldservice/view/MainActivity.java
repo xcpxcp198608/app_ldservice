@@ -52,6 +52,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain {
             binding.ibtNet.setVisibility(View.GONE);
             binding.llMain.setPadding(250, 40 , 250, 40);
         }
+        binding.tvVersion.setText(AppUtil.getVersionName(this.getPackageName()));
     }
 
     public class OnEventListener{
