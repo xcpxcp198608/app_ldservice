@@ -16,7 +16,6 @@ public class SystemUtils {
 
     public static boolean isLatestRom(){
         long buildTime = Build.TIME;
-        Logger.d("buildTime: " + buildTime);
         long targetTime = 1747238400000L;//2025/5/15 00:00:00
         return buildTime > targetTime;
     }
