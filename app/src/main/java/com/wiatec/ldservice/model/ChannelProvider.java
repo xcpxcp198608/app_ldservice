@@ -46,7 +46,6 @@ public class ChannelProvider {
                         int length = list.size();
                         for(int i = 0; i < length; i ++){
                             ChannelInfo channelInfo = list.get(i);
-                            Logger.d(i+ "");
                             if(channelInfo.isLockInBasic()){
                                 if(!SystemUtils.isLatestRom()){
                                     list.remove(i);
