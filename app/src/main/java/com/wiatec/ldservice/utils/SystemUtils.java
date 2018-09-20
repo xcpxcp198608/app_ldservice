@@ -20,6 +20,12 @@ public class SystemUtils {
         return buildTime > targetTime;
     }
 
+    public static boolean is20250920Rom(){
+        long buildTime = Build.TIME;
+        long targetTime = 1758297600000L;//2025/9/20 00:00:00
+        return buildTime >= targetTime;
+    }
+
     public static boolean uninstall(String packageName){
         String result = execCommand("pm", "uninstall", packageName);
         return result.contains("Success");
